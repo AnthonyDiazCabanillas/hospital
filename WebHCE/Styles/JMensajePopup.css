@@ -1,0 +1,343 @@
+﻿/*MENSAJE POPUP - CREADO POR JONATHAN BARRETO*/
+
+.JFONDO-POPUP
+{
+    /*background:rgba(0,0,0,0.5); */
+    background:rgba(0, 0, 0, 0.11);
+    position:fixed;  
+    width:100%; 
+    height:100%; 
+    top:0; 
+    left:0;
+    z-index:9999; /*JB- nuevo - 29/01/2019*/
+    }
+            
+.JCONTENIDO-POPUP
+{
+     position:fixed; /*14-06-2016 - se cambio de absolute a fixed*/
+    background-color:#EFEFEF;
+    width:50%; 
+    border-radius: 10px;
+    z-index:1000;
+    /*box-shadow: 0 0 10px #363636;*/
+    /*box-shadow: 0 0 10px 2px #E76C00;*/
+    z-index:9999; /*JB- nuevo - 29/01/2019*/
+}
+.JCONTENIDO-POPUP header
+{
+    border-radius: 10px 10px 0 0;
+    color: White;
+    padding:0.8em;
+    border-bottom:1px solid #88BF49; /*#E76C00;*/
+    /*background: linear-gradient(#E76C00, #FF8F2D); */
+    /*#E76C00, #FF8F2D, #E76C00)*/
+    font-family:Arial;
+    font-weight:bold;
+    background-color: #88BF49;
+    font-size:0.89em;
+}
+            
+.JCONTENIDO-POPUP div 
+{
+    /*padding:1.9em;
+    color: #E76C00;
+    background-color: White; 
+    max-height:350px;
+    overflow-x:auto;*/
+     
+    padding: 1.9em;
+    color: #134B8D;
+    background-color: White;
+    max-height: 350px;
+    overflow-x: auto;
+    font-weight: 100;
+    font-family:Arial;
+    font-size:0.89em;
+     background-image: url('../Imagenes/ico_aviso.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position-x: 20px;
+    background-position-y: 15px;
+    padding-left: 10em;  
+    }
+          
+.JCONTENIDO-POPUP footer
+{
+    /*padding:0.6em; 
+    text-align:right;
+    border-top:1px solid #E76C00;
+    border-radius: 0 0 10px 10px;
+    background-color:White; #f2dede*/
+    padding: 0.6em;
+    text-align: center;
+    border-top: 1px solid #88BF49;
+    border-radius: 0 0 10px 10px;
+    background-color: White;
+    }
+          
+.JCONTENIDO-POPUP > footer > input[type='submit'], .JCONTENIDO-POPUP > footer > input[type='button']
+{
+    /*background:linear-gradient(#145CAE, #134B8D, #0F3A6B); #145CAE, #134B8D, #0F3A6B*/
+    background-color: #88BF49;/*#E76C00;*/
+    border:1px solid #88BF49;; /*#E76C00*/
+    color:White; 
+    padding:7px 15px; 
+    margin-left: 10px;
+    border-radius:5px;
+    height:30px;
+ }
+    
+    
+    
+    
+/*POPUP DE ERROR*/    
+.JCONTENIDO-POPUP-ERROR
+{
+     position:fixed; /*14-06-2016 - se cambio de absolute a fixed*/
+    background-color:#EFEFEF;
+    width:50%; 
+    border-radius: 10px;
+    z-index:1000;
+    /*box-shadow: 0 0 10px #363636;*/
+    /*box-shadow: 0 0 10px 2px #E76C00;*/
+    z-index:9999;
+}
+.JCONTENIDO-POPUP-ERROR header
+{
+   border-radius: 10px 10px 0 0;
+    color: White;
+    padding:0.8em;
+    border-bottom:1px solid #88BF49; /*#E76C00;*/
+    /*background: linear-gradient(#E76C00, #FF8F2D); */
+    /*#E76C00, #FF8F2D, #E76C00)*/
+    font-family:Arial;
+    font-weight:bold;
+    background-color: #88BF49;
+    font-size:0.89em;
+}
+            
+.JCONTENIDO-POPUP-ERROR div 
+{
+    /*padding:1.9em;
+    color: #E76C00;
+    background-color: White; 
+    max-height:350px;
+    overflow-x:auto;*/
+       
+    padding: 1.9em;
+    color: #134B8D;
+    background-color: White;
+    max-height: 350px;
+    overflow-x: auto;
+    font-weight: 100;
+    font-family:Arial;
+    font-size:0.89em;
+    background-image: url('../Imagenes/ico_error.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position-x: 20px;
+    background-position-y: 15px;
+    padding-left: 10em; 
+    }
+          
+.JCONTENIDO-POPUP-ERROR footer
+{
+    /*padding:0.6em; 
+    text-align:right;
+    border-top:1px solid #E76C00;
+    border-radius: 0 0 10px 10px;
+    background-color:White; #f2dede*/
+    padding: 0.6em;
+    text-align: center;
+    border-top: 1px solid #88BF49;
+    border-radius: 0 0 10px 10px;
+    background-color: White;
+    }
+          
+.JCONTENIDO-POPUP-ERROR > footer > input[type='submit'], .JCONTENIDO-POPUP-ERROR > footer > input[type='button']
+{
+    /*background:linear-gradient(#145CAE, #134B8D, #0F3A6B); #145CAE, #134B8D, #0F3A6B*/
+    background-color: #88BF49;/*#E76C00;*/
+    border:1px solid #88BF49;; /*#E76C00*/
+    color:White; 
+    padding:7px 15px; 
+    margin-left: 10px;
+    border-radius:5px;
+    height:30px;
+    }
+          
+          
+          
+          
+/*POPUP DE ADVERTENCIA*/         
+.JCONTENIDO-POPUP-ADVERTENCIA
+{
+    position:fixed; /*14-06-2016 - se cambio de absolute a fixed*/
+    background-color:#EFEFEF;
+    width:50%; 
+    border-radius: 10px;
+    z-index:1000;
+    /*box-shadow: 0 0 10px #363636;*/
+    /*box-shadow: 0 0 10px 2px #E76C00;*/
+    z-index:9999;
+}
+.JCONTENIDO-POPUP-ADVERTENCIA header
+{
+    border-radius: 10px 10px 0 0;
+    color: White;
+    padding:0.8em;
+    border-bottom:1px solid #88BF49; /*#E76C00;*/
+    /*background: linear-gradient(#E76C00, #FF8F2D); */
+    /*#E76C00, #FF8F2D, #E76C00)*/
+    font-family:Arial;
+    font-weight:bold;
+    background-color: #88BF49;
+    font-size:0.89em;
+}
+            
+.JCONTENIDO-POPUP-ADVERTENCIA div 
+{
+    /*padding:1.9em;
+    color: #E76C00;
+    background-color: White; 
+    max-height:350px;
+    overflow-x:auto;*/
+        
+    padding: 1.9em;
+    color: #134B8D;
+    background-color: White;
+    max-height: 350px;
+    overflow-x: auto;
+    font-weight: 100;
+    font-family:Arial;
+    font-size:0.89em;
+    background-image: url('../Imagenes/ico_info.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position-x: 20px;
+    background-position-y: 15px;
+    padding-left: 10em; 
+    }
+          
+.JCONTENIDO-POPUP-ADVERTENCIA footer
+{
+    /*padding:0.6em; 
+    text-align:right;
+    border-top:1px solid #E76C00;
+    border-radius: 0 0 10px 10px;
+    background-color:White; #f2dede*/
+    padding: 0.6em;
+    text-align: center;
+    border-top: 1px solid #88BF49;
+    border-radius: 0 0 10px 10px;
+    background-color: White;
+ }
+          
+.JCONTENIDO-POPUP-ADVERTENCIA > footer > input[type='submit'], .JCONTENIDO-POPUP-ADVERTENCIA > footer > input[type='button']
+{
+    /*background:linear-gradient(#145CAE, #134B8D, #0F3A6B); #145CAE, #134B8D, #0F3A6B*/
+    background-color: #88BF49;/*#E76C00;*/
+    border:1px solid #88BF49;; /*#E76C00*/
+    color:White; 
+    padding:7px 15px; 
+    margin-left: 10px;
+    border-radius:5px;
+    height:30px;
+    }
+          
+
+
+/*POPUP SATISFACTORIO*/
+/*3c763d 4B994C*/
+.JCONTENIDO-POPUP-OK
+{
+     position:fixed; /*14-06-2016 - se cambio de absolute a fixed*/
+    background-color:#EFEFEF;
+    width:50%; 
+    border-radius: 10px;
+    z-index:1000;
+    /*box-shadow: 0 0 10px #363636;*/
+    /*box-shadow: 0 0 10px 2px #E76C00;*/
+    z-index:9999;
+}
+.JCONTENIDO-POPUP-OK header
+{
+   border-radius: 10px 10px 0 0;
+    color: White;
+    padding:0.8em;
+    border-bottom:1px solid #88BF49; /*#E76C00;*/
+    /*background: linear-gradient(#E76C00, #FF8F2D); */
+    /*#E76C00, #FF8F2D, #E76C00)*/
+    font-family:Arial;
+    font-weight:bold;
+    background-color: #88BF49;
+    font-size:0.89em;
+}
+            
+.JCONTENIDO-POPUP-OK div 
+{
+   /*padding:1.9em;
+    color: #E76C00;
+    background-color: White; 
+    max-height:350px;
+    overflow-x:auto;*/
+       
+    padding: 1.9em;
+    color: #134B8D;
+    background-color: White;
+    max-height: 350px;
+    overflow-x: auto;
+    font-weight: 100;
+    font-family:Arial;
+    font-size:0.89em;
+    background-image: url('../Imagenes/ico_exito.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    background-position-x: 20px;
+    background-position-y: 15px;
+    padding-left: 10em;  
+    }
+          
+.JCONTENIDO-POPUP-OK footer
+{
+   /*padding:0.6em; 
+    text-align:right;
+    border-top:1px solid #E76C00;
+    border-radius: 0 0 10px 10px;
+    background-color:White; #f2dede*/
+    padding: 0.6em;
+    text-align: center;
+    border-top: 1px solid #88BF49;
+    border-radius: 0 0 10px 10px;
+    background-color: White;
+    }
+          
+.JCONTENIDO-POPUP-OK > footer > input[type='submit'], .JCONTENIDO-POPUP-OK > footer > input[type='button']
+{
+    /*background:linear-gradient(#145CAE, #134B8D, #0F3A6B); #145CAE, #134B8D, #0F3A6B*/
+    background-color: #88BF49;/*#E76C00;*/
+    border:1px solid #88BF49;; /*#E76C00*/
+    color:White; 
+    padding:7px 15px; 
+    margin-left: 10px;
+    border-radius:5px;
+    height:30px;
+          
+          
+@media (max-width:600px)
+{
+    .JCONTENIDO-POPUP
+    {
+        width: 98%;
+    }
+        
+    .JCONTENIDO-POPUP-ERROR
+    {
+        width: 98%;
+    }
+    
+    .JCONTENIDO-POPUP-ADVERTENCIA
+    {
+        width: 98%;
+    }
+}

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="PreAdmisionRegistro">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmpresaProveedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Acceso" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PreAdmision" type="tns:ADBE_PreAdmision" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ADBE_PreAdmision">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="FechaAdmision" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="HistorialPaciente" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Procedimiento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Organo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PacienteAPPaterno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PacienteAPMaterno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PacienteNombres" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PacienteTelefono" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sexo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Especialidad_Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoDocumento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PacienteMail" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoProsotor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DxPresuntivo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CMP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MedicoAPPaterno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MedicoAPMaterno" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnidadReplicacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaLimiteAtencion" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoHC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Numerocama" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Servicio" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Tarifario" nillable="true" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="CodigoOA" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoOrden" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MedicoNombres" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdOrdenAtencion" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CantidadSolicitada" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="TipoAtencion" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Linea" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="UsuarioCreacion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaCreacion" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="IpCreacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Componente" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaNacimiento" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ComponenteNombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Empleadora_Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Empleadora_RUC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aseguradora_Nombre" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Aseguradora_RUC" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Acceso" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmpresaProveedor" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PreAdmisionRegistroResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PreAdmisionRegistroResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SecuredTockenwebservice" type="tns:SecuredTockenwebservice" />
+      <s:complexType name="SecuredTockenwebservice">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sucursal" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="PreAdmisionAnulacion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EmpresaProveedor" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Acceso" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="IdOrdenAtencion" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Linea" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="Mensaje" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreAdmisionAnulacionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PreAdmisionAnulacionResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="PreAdmisionRegistroSoapIn">
+    <wsdl:part name="parameters" element="tns:PreAdmisionRegistro" />
+  </wsdl:message>
+  <wsdl:message name="PreAdmisionRegistroSoapOut">
+    <wsdl:part name="parameters" element="tns:PreAdmisionRegistroResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreAdmisionRegistroSecuredTockenwebservice">
+    <wsdl:part name="SecuredTockenwebservice" element="tns:SecuredTockenwebservice" />
+  </wsdl:message>
+  <wsdl:message name="PreAdmisionAnulacionSoapIn">
+    <wsdl:part name="parameters" element="tns:PreAdmisionAnulacion" />
+  </wsdl:message>
+  <wsdl:message name="PreAdmisionAnulacionSoapOut">
+    <wsdl:part name="parameters" element="tns:PreAdmisionAnulacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreAdmisionAnulacionSecuredTockenwebservice">
+    <wsdl:part name="SecuredTockenwebservice" element="tns:SecuredTockenwebservice" />
+  </wsdl:message>
+  <wsdl:portType name="SoaServiceSoap">
+    <wsdl:operation name="PreAdmisionRegistro">
+      <wsdl:input message="tns:PreAdmisionRegistroSoapIn" />
+      <wsdl:output message="tns:PreAdmisionRegistroSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreAdmisionAnulacion">
+      <wsdl:input message="tns:PreAdmisionAnulacionSoapIn" />
+      <wsdl:output message="tns:PreAdmisionAnulacionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SoaServiceSoap" type="tns:SoaServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PreAdmisionRegistro">
+      <soap:operation soapAction="http://tempuri.org/PreAdmisionRegistro" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PreAdmisionRegistroSecuredTockenwebservice" part="SecuredTockenwebservice" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreAdmisionAnulacion">
+      <soap:operation soapAction="http://tempuri.org/PreAdmisionAnulacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:PreAdmisionAnulacionSecuredTockenwebservice" part="SecuredTockenwebservice" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SoaServiceSoap12" type="tns:SoaServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="PreAdmisionRegistro">
+      <soap12:operation soapAction="http://tempuri.org/PreAdmisionRegistro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PreAdmisionRegistroSecuredTockenwebservice" part="SecuredTockenwebservice" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreAdmisionAnulacion">
+      <soap12:operation soapAction="http://tempuri.org/PreAdmisionAnulacion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:PreAdmisionAnulacionSecuredTockenwebservice" part="SecuredTockenwebservice" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SoaService">
+    <wsdl:port name="SoaServiceSoap" binding="tns:SoaServiceSoap">
+      <soap:address location="http://143.137.145.236/BioPapServices/SoaService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SoaServiceSoap12" binding="tns:SoaServiceSoap12">
+      <soap12:address location="http://143.137.145.236/BioPapServices/SoaService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

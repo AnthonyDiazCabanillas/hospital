@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://clinicasanfelipe.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://clinicasanfelipe.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://clinicasanfelipe.com/">
+      <s:element name="Insert_HIS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TIPOMSG" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="COD_EMPRESA" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_SUCURSAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_DATETIME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_TYPE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DEATH_INDICATOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CAT_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LAST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIRST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BIRTH_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GENDER_KEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LAST_UPDATED" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STREET_ADDRESS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CITY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COUNTRY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PHONE_NUMBER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VISIT_NUMBER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="START_DATETIME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DURATION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATUS_KEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATUS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROCEDURE_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROCEDURE_DESCRIPTION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ROOM_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SOL_MEDICO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PAID_FLAG" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="REQUESTED_BY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MESSAGE_TYPE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PACS_SPS_ID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HISResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_HISResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_MFN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="COD_EMPRESA" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_SUCURSAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_DATETIME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_TYPE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_MEDICO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NOM_MEDICO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APE_MEDICO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ESPECIALIDAD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FECHA_NACIMIENTO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SEXO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_MEDICO_ALTERNATIVO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DIRECCION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CIUDAD" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TELEFONO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GENERO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PAIS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STARTTIME" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_MFNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_HIS_MFNResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_MERGE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="COD_EMPRESA" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_SUCURSAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_DATETIME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_TYPE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DEATH_INDICATOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CAT_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LAST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIRST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BIRTH_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GENDER_KEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LAST_UPDATED" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STREET_ADDRESS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CITY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COUNTRY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PHONE_NUMBER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATIENT_CLASS_KEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATIENT_ID_MERGED" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_MERGEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_HIS_MERGEResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_CANCEL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="COD_EMPRESA" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_SUCURSAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_DATETIME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_TYPE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DEATH_INDICATOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LAST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIRST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PHONE_NUMBER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EMAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BIRTH_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GENDER_KEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROCEDURE_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PROCEDURE_DESCRIPTION" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SPS_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SEQUENCE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PACS_SPS_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ROOM_CODE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SOL_MEDICO" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STATUS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_CANCELResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_HIS_CANCELResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_ADT">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="COD_EMPRESA" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="COD_SUCURSAL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_DATETIME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EVENT_TYPE_ID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ID_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RUT_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TIPO_PACIENTE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DEATH_INDICATOR" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CAT_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LAST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIRST_NAME" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BIRTH_DATE" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="GENDER_KEY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LAST_UPDATED" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="STREET_ADDRESS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CITY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="COUNTRY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PHONE_NUMBER" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X_EMAIL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PRIMARY" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PATIENT_CLASS_KEY" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Insert_HIS_ADTResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Insert_HIS_ADTResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="string" nillable="true" type="s:string" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="Insert_HISSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_HIS" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HISSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_HISResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MFNSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_MFN" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MFNSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_MFNResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MERGESoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_MERGE" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MERGESoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_MERGEResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_CANCELSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_CANCEL" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_CANCELSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_CANCELResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_ADTSoapIn">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_ADT" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_ADTSoapOut">
+    <wsdl:part name="parameters" element="tns:Insert_HIS_ADTResponse" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HISHttpGetIn">
+    <wsdl:part name="TIPOMSG" type="s:string" />
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="CAT_NAME" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="LAST_UPDATED" type="s:string" />
+    <wsdl:part name="STREET_ADDRESS" type="s:string" />
+    <wsdl:part name="CITY" type="s:string" />
+    <wsdl:part name="COUNTRY" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="VISIT_NUMBER" type="s:string" />
+    <wsdl:part name="START_DATETIME" type="s:string" />
+    <wsdl:part name="DURATION" type="s:string" />
+    <wsdl:part name="STATUS_KEY" type="s:string" />
+    <wsdl:part name="STATUS" type="s:string" />
+    <wsdl:part name="PROCEDURE_CODE" type="s:string" />
+    <wsdl:part name="PROCEDURE_DESCRIPTION" type="s:string" />
+    <wsdl:part name="ROOM_CODE" type="s:string" />
+    <wsdl:part name="SOL_MEDICO" type="s:string" />
+    <wsdl:part name="PAID_FLAG" type="s:string" />
+    <wsdl:part name="REQUESTED_BY" type="s:string" />
+    <wsdl:part name="MESSAGE_TYPE" type="s:string" />
+    <wsdl:part name="PACS_SPS_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HISHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MFNHttpGetIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="COD_MEDICO" type="s:string" />
+    <wsdl:part name="NOM_MEDICO" type="s:string" />
+    <wsdl:part name="APE_MEDICO" type="s:string" />
+    <wsdl:part name="ESPECIALIDAD" type="s:string" />
+    <wsdl:part name="FECHA_NACIMIENTO" type="s:string" />
+    <wsdl:part name="SEXO" type="s:string" />
+    <wsdl:part name="COD_MEDICO_ALTERNATIVO" type="s:string" />
+    <wsdl:part name="DIRECCION" type="s:string" />
+    <wsdl:part name="CIUDAD" type="s:string" />
+    <wsdl:part name="TELEFONO" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="GENERO" type="s:string" />
+    <wsdl:part name="PAIS" type="s:string" />
+    <wsdl:part name="STARTTIME" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MFNHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MERGEHttpGetIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="CAT_NAME" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="LAST_UPDATED" type="s:string" />
+    <wsdl:part name="STREET_ADDRESS" type="s:string" />
+    <wsdl:part name="CITY" type="s:string" />
+    <wsdl:part name="COUNTRY" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="PATIENT_CLASS_KEY" type="s:string" />
+    <wsdl:part name="PATIENT_ID_MERGED" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MERGEHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_CANCELHttpGetIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="PROCEDURE_CODE" type="s:string" />
+    <wsdl:part name="PROCEDURE_DESCRIPTION" type="s:string" />
+    <wsdl:part name="SPS_ID" type="s:string" />
+    <wsdl:part name="SEQUENCE_ID" type="s:string" />
+    <wsdl:part name="PACS_SPS_ID" type="s:string" />
+    <wsdl:part name="ROOM_CODE" type="s:string" />
+    <wsdl:part name="SOL_MEDICO" type="s:string" />
+    <wsdl:part name="STATUS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_CANCELHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_ADTHttpGetIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="CAT_NAME" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="LAST_UPDATED" type="s:string" />
+    <wsdl:part name="STREET_ADDRESS" type="s:string" />
+    <wsdl:part name="CITY" type="s:string" />
+    <wsdl:part name="COUNTRY" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="X_EMAIL" type="s:string" />
+    <wsdl:part name="PRIMARY" type="s:string" />
+    <wsdl:part name="PATIENT_CLASS_KEY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_ADTHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HISHttpPostIn">
+    <wsdl:part name="TIPOMSG" type="s:string" />
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="CAT_NAME" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="LAST_UPDATED" type="s:string" />
+    <wsdl:part name="STREET_ADDRESS" type="s:string" />
+    <wsdl:part name="CITY" type="s:string" />
+    <wsdl:part name="COUNTRY" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="VISIT_NUMBER" type="s:string" />
+    <wsdl:part name="START_DATETIME" type="s:string" />
+    <wsdl:part name="DURATION" type="s:string" />
+    <wsdl:part name="STATUS_KEY" type="s:string" />
+    <wsdl:part name="STATUS" type="s:string" />
+    <wsdl:part name="PROCEDURE_CODE" type="s:string" />
+    <wsdl:part name="PROCEDURE_DESCRIPTION" type="s:string" />
+    <wsdl:part name="ROOM_CODE" type="s:string" />
+    <wsdl:part name="SOL_MEDICO" type="s:string" />
+    <wsdl:part name="PAID_FLAG" type="s:string" />
+    <wsdl:part name="REQUESTED_BY" type="s:string" />
+    <wsdl:part name="MESSAGE_TYPE" type="s:string" />
+    <wsdl:part name="PACS_SPS_ID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HISHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MFNHttpPostIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="COD_MEDICO" type="s:string" />
+    <wsdl:part name="NOM_MEDICO" type="s:string" />
+    <wsdl:part name="APE_MEDICO" type="s:string" />
+    <wsdl:part name="ESPECIALIDAD" type="s:string" />
+    <wsdl:part name="FECHA_NACIMIENTO" type="s:string" />
+    <wsdl:part name="SEXO" type="s:string" />
+    <wsdl:part name="COD_MEDICO_ALTERNATIVO" type="s:string" />
+    <wsdl:part name="DIRECCION" type="s:string" />
+    <wsdl:part name="CIUDAD" type="s:string" />
+    <wsdl:part name="TELEFONO" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="GENERO" type="s:string" />
+    <wsdl:part name="PAIS" type="s:string" />
+    <wsdl:part name="STARTTIME" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MFNHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MERGEHttpPostIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="CAT_NAME" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="LAST_UPDATED" type="s:string" />
+    <wsdl:part name="STREET_ADDRESS" type="s:string" />
+    <wsdl:part name="CITY" type="s:string" />
+    <wsdl:part name="COUNTRY" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="PATIENT_CLASS_KEY" type="s:string" />
+    <wsdl:part name="PATIENT_ID_MERGED" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_MERGEHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_CANCELHttpPostIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="EMAIL" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="PROCEDURE_CODE" type="s:string" />
+    <wsdl:part name="PROCEDURE_DESCRIPTION" type="s:string" />
+    <wsdl:part name="SPS_ID" type="s:string" />
+    <wsdl:part name="SEQUENCE_ID" type="s:string" />
+    <wsdl:part name="PACS_SPS_ID" type="s:string" />
+    <wsdl:part name="ROOM_CODE" type="s:string" />
+    <wsdl:part name="SOL_MEDICO" type="s:string" />
+    <wsdl:part name="STATUS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_CANCELHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_ADTHttpPostIn">
+    <wsdl:part name="COD_EMPRESA" type="s:string" />
+    <wsdl:part name="COD_SUCURSAL" type="s:string" />
+    <wsdl:part name="EVENT_ID" type="s:string" />
+    <wsdl:part name="EVENT_DATETIME" type="s:string" />
+    <wsdl:part name="EVENT_TYPE_ID" type="s:string" />
+    <wsdl:part name="ID_PACIENTE" type="s:string" />
+    <wsdl:part name="RUT_PACIENTE" type="s:string" />
+    <wsdl:part name="TIPO_PACIENTE" type="s:string" />
+    <wsdl:part name="DEATH_INDICATOR" type="s:string" />
+    <wsdl:part name="CAT_NAME" type="s:string" />
+    <wsdl:part name="LAST_NAME" type="s:string" />
+    <wsdl:part name="FIRST_NAME" type="s:string" />
+    <wsdl:part name="BIRTH_DATE" type="s:string" />
+    <wsdl:part name="GENDER_KEY" type="s:string" />
+    <wsdl:part name="LAST_UPDATED" type="s:string" />
+    <wsdl:part name="STREET_ADDRESS" type="s:string" />
+    <wsdl:part name="CITY" type="s:string" />
+    <wsdl:part name="COUNTRY" type="s:string" />
+    <wsdl:part name="PHONE_NUMBER" type="s:string" />
+    <wsdl:part name="X_EMAIL" type="s:string" />
+    <wsdl:part name="PRIMARY" type="s:string" />
+    <wsdl:part name="PATIENT_CLASS_KEY" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Insert_HIS_ADTHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="HisXmlEventsSoap">
+    <wsdl:operation name="Insert_HIS">
+      <wsdl:input message="tns:Insert_HISSoapIn" />
+      <wsdl:output message="tns:Insert_HISSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MFN">
+      <wsdl:input message="tns:Insert_HIS_MFNSoapIn" />
+      <wsdl:output message="tns:Insert_HIS_MFNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MERGE">
+      <wsdl:input message="tns:Insert_HIS_MERGESoapIn" />
+      <wsdl:output message="tns:Insert_HIS_MERGESoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_CANCEL">
+      <wsdl:input message="tns:Insert_HIS_CANCELSoapIn" />
+      <wsdl:output message="tns:Insert_HIS_CANCELSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_ADT">
+      <wsdl:input message="tns:Insert_HIS_ADTSoapIn" />
+      <wsdl:output message="tns:Insert_HIS_ADTSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="HisXmlEventsHttpGet">
+    <wsdl:operation name="Insert_HIS">
+      <wsdl:input message="tns:Insert_HISHttpGetIn" />
+      <wsdl:output message="tns:Insert_HISHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MFN">
+      <wsdl:input message="tns:Insert_HIS_MFNHttpGetIn" />
+      <wsdl:output message="tns:Insert_HIS_MFNHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MERGE">
+      <wsdl:input message="tns:Insert_HIS_MERGEHttpGetIn" />
+      <wsdl:output message="tns:Insert_HIS_MERGEHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_CANCEL">
+      <wsdl:input message="tns:Insert_HIS_CANCELHttpGetIn" />
+      <wsdl:output message="tns:Insert_HIS_CANCELHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_ADT">
+      <wsdl:input message="tns:Insert_HIS_ADTHttpGetIn" />
+      <wsdl:output message="tns:Insert_HIS_ADTHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="HisXmlEventsHttpPost">
+    <wsdl:operation name="Insert_HIS">
+      <wsdl:input message="tns:Insert_HISHttpPostIn" />
+      <wsdl:output message="tns:Insert_HISHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MFN">
+      <wsdl:input message="tns:Insert_HIS_MFNHttpPostIn" />
+      <wsdl:output message="tns:Insert_HIS_MFNHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MERGE">
+      <wsdl:input message="tns:Insert_HIS_MERGEHttpPostIn" />
+      <wsdl:output message="tns:Insert_HIS_MERGEHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_CANCEL">
+      <wsdl:input message="tns:Insert_HIS_CANCELHttpPostIn" />
+      <wsdl:output message="tns:Insert_HIS_CANCELHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_ADT">
+      <wsdl:input message="tns:Insert_HIS_ADTHttpPostIn" />
+      <wsdl:output message="tns:Insert_HIS_ADTHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HisXmlEventsSoap" type="tns:HisXmlEventsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Insert_HIS">
+      <soap:operation soapAction="http://clinicasanfelipe.com/Insert_HIS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MFN">
+      <soap:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_MFN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MERGE">
+      <soap:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_MERGE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_CANCEL">
+      <soap:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_CANCEL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_ADT">
+      <soap:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_ADT" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HisXmlEventsSoap12" type="tns:HisXmlEventsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Insert_HIS">
+      <soap12:operation soapAction="http://clinicasanfelipe.com/Insert_HIS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MFN">
+      <soap12:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_MFN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MERGE">
+      <soap12:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_MERGE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_CANCEL">
+      <soap12:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_CANCEL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_ADT">
+      <soap12:operation soapAction="http://clinicasanfelipe.com/Insert_HIS_ADT" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HisXmlEventsHttpGet" type="tns:HisXmlEventsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="Insert_HIS">
+      <http:operation location="/Insert_HIS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MFN">
+      <http:operation location="/Insert_HIS_MFN" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MERGE">
+      <http:operation location="/Insert_HIS_MERGE" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_CANCEL">
+      <http:operation location="/Insert_HIS_CANCEL" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_ADT">
+      <http:operation location="/Insert_HIS_ADT" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HisXmlEventsHttpPost" type="tns:HisXmlEventsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="Insert_HIS">
+      <http:operation location="/Insert_HIS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MFN">
+      <http:operation location="/Insert_HIS_MFN" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_MERGE">
+      <http:operation location="/Insert_HIS_MERGE" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_CANCEL">
+      <http:operation location="/Insert_HIS_CANCEL" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Insert_HIS_ADT">
+      <http:operation location="/Insert_HIS_ADT" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HisXmlEvents">
+    <wsdl:port name="HisXmlEventsSoap" binding="tns:HisXmlEventsSoap">
+      <soap:address location="http://192.168.32.234/WsRisPacsProd/HisXmlEvents.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HisXmlEventsSoap12" binding="tns:HisXmlEventsSoap12">
+      <soap12:address location="http://192.168.32.234/WsRisPacsProd/HisXmlEvents.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HisXmlEventsHttpGet" binding="tns:HisXmlEventsHttpGet">
+      <http:address location="http://192.168.32.234/WsRisPacsProd/HisXmlEvents.asmx" />
+    </wsdl:port>
+    <wsdl:port name="HisXmlEventsHttpPost" binding="tns:HisXmlEventsHttpPost">
+      <http:address location="http://192.168.32.234/WsRisPacsProd/HisXmlEvents.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,190 @@
+/*ESTILOS PARA TAB RESPONSIVE - CREADO POR JONATHAN BARRETO*/
+
+.JSBTABS{
+    width: 100%;
+    float: left; 
+    cursor: pointer;
+    margin: 5px 0;
+    overflow: hidden;
+    /*margin-bottom: -25px;*/
+    font-size: 0.7em; /*12/07/2016*/
+}
+
+.JSBTABS a {
+    /*line-height: 25px;*/
+    padding: 5px 0;
+}
+
+.JSBTABS ul{
+    list-style: none;
+    margin: 0;
+    padding: 3px 0;
+}
+
+.JSBTABS ul li{                
+    width: 100%; 
+    /*background: linear-gradient(#EBEBEB, #EBEBEB, #DCDCDC, #DCDCDC, #EBEBEB, #EBEBEB);*/
+    /*background: linear-gradient(#949494, #808080, #777777, #525252, #525252, #525252);*/
+    background: linear-gradient(#547B9F, #344657);    
+    /*border: 1px solid #BABABA; TMACASSI*/
+    text-align: center;
+    height: 25px;
+    border-radius: 25px 0;
+	display: inline;
+	padding: 3px 25px;
+    /*FUENTE*/
+    color: white;
+    font-family:  Arial; /* TMACASSI "Calibri";*/
+}
+
+.JSBTABS ul li:hover {
+    border-right: 0;   
+    width: 102.5%;
+    /*background: #F5F5F5;*/
+    color: black;
+    background: linear-gradient(#EBEBEB, #EBEBEB, #DCDCDC, #DCDCDC, #EBEBEB, #EBEBEB);
+    
+}
+
+.JSBTABS_NAVE{
+    display: none;
+}
+
+
+.chkTAB-CHECK{
+    display: none;
+}/*16/05/2016*/
+
+.JSBMOSTRAR_TABS{
+    display: none;
+}
+
+
+
+@media (max-width:768px)
+{
+    .chkTAB-CHECK:checked ~ ul {
+    display: block;
+    }/*16/05/2016*/
+
+    .chkTAB-CHECK:checked ~ ul > li {
+        display: block;
+    }
+
+    
+    
+    .JSBTABS {       
+        width:100%;
+    }   
+    /*16/12/2014*/
+    .JSBTABS ul{
+        display: none;
+    }
+    
+    .JSBMOSTRAR_TABS{
+        padding: 5px 0;        
+        display: block;
+        text-align: center;
+        background: linear-gradient(#547B9F, #344657);
+        color: #D9D946;
+        font-size: 20px;
+        font-family:  Arial; /* TMACASSI "Calibri";        */
+    }   
+    
+    .JSBTABS ul {
+        /*position: absolute;*/
+        min-width: 100%;
+        z-index: 999;
+    }
+
+    .JSBTABS ul li:hover {
+        border: 1px solid #BABABA; 
+        width: 100%;
+        color: black;
+        background: linear-gradient(#EBEBEB, #EBEBEB, #DCDCDC, #DCDCDC, #EBEBEB, #EBEBEB);
+
+    }
+    
+    .JSBTABS_NAVE{
+        position:absolute;       
+        cursor: pointer;
+        display: block;
+        right: 10px;
+        top: 45px;  
+        height: 20px;
+    }
+
+    /*CURSOR ENCIMA*/
+    /*.JSBTAB_ACTIVO:hover ~ li, .JSBTABS:hover ul li {
+        display: block;                    
+    }        */     
+
+    /*.JSBTABS_NAVE:hover ~ .JSBTABS .JSBTAB_ACTIVO ~ li{
+        display: inline-block;
+    }*//*16/12/2014*/
+}
+
+
+
+.JCUERPO 
+{
+    border: 1px solid #BABABA;
+    padding:5px;
+    width:100%; 
+    overflow-y:auto;     
+    height: 99%;    
+    background: #F5F5F5; /*ddd*/ 
+    border-radius: 5px;
+    float: left;
+}
+
+.JSBTAB_ACTIVO
+{
+    border-right: 0 !important;   
+    color: black !important;
+    background: linear-gradient(#EBEBEB, #EBEBEB, #DCDCDC, #DCDCDC, #EBEBEB, #EBEBEB) !important;    
+}
+
+
+
+/*TABS VERSION 2 - CREADO POR JONATHAN BARRETO*/        
+.JTABS > input[type='radio']
+{
+    display:none;   
+    }
+            
+.JTABS-LABEL
+{
+    padding: 5px 25px; /*ORIGINAL -> padding: 10px 25px;*/
+    background-color: #2074AC; /*#bd362f ROJO  #2f96b4 azulino*/ /*JB - SE COMENTA Y SE USA LA LINEA DEBAJO - 07/01/2020*/
+    /*background: linear-gradient(#547B9F, #344657);*/
+    color: White;
+    display:inline-block;
+    margin: 0 2px -1px; /*ORIGINAL -> margin: 0 0 -1px;*/
+    font-weight: 600;
+    font-size:0.8em;
+    }
+            
+            
+.JCONTENIDO-TAB
+{
+    display:none;
+    }
+            
+.JCONTENIDO-TAB
+{
+    padding: 10px 0 0 0; /*padding: 10px 0;*/
+    border: 1px solid #ddd;
+    border-top:1px solid #2074AC; /**/
+    margin-left:2px; /*nuevo*/
+    }
+             
+.JCHEK-TABS:checked + label
+{
+    border: 1px solid #ddd;
+    border-top: 2px solid #2074AC;
+    border-bottom: 1px solid White;
+    background-color: transparent; /**/
+    background: transparent;
+    color: #134B8D; /**/
+    }

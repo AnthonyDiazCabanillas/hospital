@@ -1,0 +1,329 @@
+﻿.JTREE  /*12/07/2016 - NUEVA ESTILO CREADO*/
+{
+    font-size:0.7em;
+    font-family: Arial;
+    }
+
+
+.JTREE ul {
+    list-style: none outside none;
+    margin-left: -20px; /*12/07/2016*/
+}
+
+.JTREE > ul > li > ul > li > a, .JTREE > ul > li > ul > li > label  /*24/06/2016*/
+{
+    margin-left:15px;
+    cursor: pointer;
+    color: #134B8D; /*PARA CLINICA*/
+    }
+
+.JTREE li a {
+    line-height: 25px;
+}
+.JTREE > ul > li > a {
+    color: #3B4C56;
+    display: inline-block; /*block*/
+    font-weight: normal;
+    position: relative;
+    text-decoration: none;
+    padding-left:28px; /**/
+    color: #134B8D; /*PARA CLINICA*/
+    font-weight: bold; /*PARA CLINICA*/
+    cursor: pointer; /*PARA CLINICA - 05/08/2016*/
+}
+.JTREE li.parent > a {
+    padding: 0 0 0 28px;
+}
+.JTREE li.parent > a:before {
+    background-image: url("../Imagenes/mas_menos.png");
+    background-position: 25px center;
+        content: ""; 
+    display: block;
+    height: 21px;
+    left: 0;
+    position: absolute;
+    top: 2px;
+    vertical-align: middle;
+    width: 23px;
+}
+        
+        
+.JTREE ul li.active > a:before {
+    background-position: 0 center;
+}
+.JTREE ul li ul {
+    border-left: 1px solid #D9DADB;
+    display: none;
+    margin: 0 0 0 12px;
+    overflow: hidden;
+    padding: 0 0 0 25px;
+}
+.JTREE ul li ul li {
+    position: relative;
+}
+.JTREE ul li ul li:before {
+    border-bottom: 1px dashed #E2E2E3;
+    content: "";
+    left: -20px;
+    position: absolute;
+    top: 12px;
+    width: 15px;
+}
+
+
+/*MODELO TREEVIEW 2 - CREADO POR JONATHAN BARRETO*/
+ul, .JTreeView {
+    list-style-type: none;
+}
+
+.JTreeView {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    color: #134B8D;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 0.7em;
+}
+
+    .JTreeView li {
+        margin:5px 0px;
+    }
+
+.anidado > li {
+    margin-left:10px;
+}
+
+.nudo {
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none;
+    color:#134B8D;
+}
+
+    .nudo::before {
+        /*content: "\25B6";*/
+        background-image: url("../Imagenes/mas_menos.png");
+        background-position: 25px center;
+        content: "";
+        height: 21px;
+        width: 23px;
+
+        color: black;
+        display: inline-block;
+        margin-right: 6px;
+    }
+
+.nudo-down::before {
+    /*-ms-transform: rotate(90deg); 
+    -webkit-transform: rotate(90deg); 
+    transform: rotate(90deg);*/
+    background-image: url("../Imagenes/mas_menos.png");
+    background-position: 0 center;
+}
+
+.anidado {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+
+.JETIQUETA_TREE0 /*ESTILO PARA ETIQUETAS EN TREEVIEW y SIN NEGRITA*/ {
+    padding: 0.01em;
+    font-family: Arial; 
+    font-size: 11.5px;
+    color: #134B8D;
+    font-weight: bold;
+}
+.JETIQUETA_TREE2 /*ESTILO PARA ETIQUETAS EN TREEVIEW y SIN NEGRITA*/ {
+    padding: 0.01em;
+    font-family: Arial; 
+    font-size: 11.5px;
+    color: #134B8D;
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.JETIQUETA_TREE1 /*ESTILO PARA ETIQUETAS EN TREEVIEW y CON NEGRITA*/ {    
+    padding: 0.01em;
+    font-family: Arial; 
+    font-size: 11.5px;
+    color: #134B8D;
+    margin-left: 20px;
+    font-weight: normal;
+}
+
+.JETIQUETA_TREE_SUSPENDIDO {
+    font-size:1em;
+    color: red;
+    font-weight: bold;
+    font-size:1em;
+}
+
+.JTREE2-SELECCIONADO {
+    color: #8DC73F;
+}
+
+.JTREE2-FECHA {
+    padding-top: 5px;
+    /*color: #134B8D; #134B8D   #8DC73F*/
+}
+
+
+
+
+
+
+
+/*JB - 22/07/2020 - NUEVO*/
+.JTREE3-FECHA
+{
+    padding: 5px;
+    color: #134B8D;
+    font-family: Arial;
+    font-weight: bold;
+    font-size: 0.7em;
+    }
+    
+.JTREE3-SIGNO
+{
+    background-image: url("../Imagenes/mas_menos.png");
+    background-position: 25px center;
+    content: "";
+    height: 27px;
+    width: 23px;
+
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+    }
+    
+.JTREE3-PLUS
+{
+    background-image: url("../Imagenes/mas_menos.png");
+    background-position: 0 center;
+    content: "";
+    height: 27px;
+    width: 23px;
+
+    color: black;
+    display: inline-block;
+    margin-right: 6px;
+    }
+    
+ .JLAB-ROJO
+ {
+     background-image: url("../Imagenes/LaboratorioR.png");
+     width:35px;
+     height:35px;
+     background-size: 35px 35px;
+     display: inline-block;
+     }
+ .JLAB-AMARILLO
+ {
+     background-image: url("../Imagenes/LaboratorioA.png");
+     width:35px;
+     height:35px;
+     background-size: 35px 35px;
+     display: inline-block;
+     }
+     
+ .JLAB-VERDE
+ {
+     background-image: url("../Imagenes/LaboratorioV.png");
+     width:35px;
+     height:35px;
+     background-size: 35px 35px;
+     display: inline-block;
+     }
+     
+ .JLAB-NEUTRAL
+ {
+     background-image: url("../Imagenes/LaboratorioO.png");
+     width:35px;
+     height:35px;
+     background-size: 35px 35px;
+     display: inline-block;
+     }
+     
+     
+ .JIMAG-ROJO
+ {
+     background-image: url("../Imagenes/ImagenR2.png");
+     width:40px;
+     height:40px;
+     background-size: 43px 43px;
+     display: inline-block;
+     }
+ .JIMAG-AMARILLO
+ {
+     background-image: url("../Imagenes/ImagenA2.png");
+     width:40px;
+     height:40px;
+     background-size: 43px 43px;
+     display: inline-block;
+     }
+     
+ .JIMAG-VERDE
+ {
+     background-image: url("../Imagenes/ImagenV2.png");
+     width:40px;
+     height:40px;
+     background-size: 43px 43px;
+     display: inline-block;
+     }
+     
+  .JIMAG-NEUTRAL
+ {
+     background-image: url("../Imagenes/ImagenO2.png");
+     width:40px;
+     height:40px;
+     background-size: 43px 43px;
+     display: inline-block;
+     }
+     
+ 
+ .JCCLI
+ {
+     background-image: url("../Imagenes/Pastilla2.png");
+     width:35px;
+     height:35px;
+     background-size: 35px 35px;
+     display: inline-block;
+     }    
+ 
+    
+.JVALOR-FECHA, .JVALOR-HORA
+{
+    display: inline-block;
+    }
+    
+    
+.JTREE3-HORA
+{
+    padding: 10px;
+    padding-left: 35px;
+    }
+
+.JTREE3-DETALLE
+{
+    padding: 5px;
+    padding-left: 55px;
+    }
+    
+    
+    
+.JTREE3-SELECCIONADO
+{
+    color: #8DC73F;
+    }
+    
+.JFILA-FECHA, .JFILA-HORA, .JTREE3-DETALLE
+{
+    cursor: pointer;
+    }

@@ -1,0 +1,140 @@
+﻿.JLOADER-1 {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    /*margin: 100px auto;*/
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+}
+
+.JESFERA-1, .JESFERA-2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /*background-color: #333;*/
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;  
+    -webkit-animation: JPULSO 2.0s infinite ease-in-out;
+    animation: JPULSO 2.0s infinite ease-in-out;
+}
+        
+.JESFERA-1
+{
+    background-color: #8DC73F;
+    }
+
+.JESFERA-2
+{
+    background-color: #134B8D;
+    }
+
+.JESFERA-2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+@-webkit-keyframes JPULSO {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes JPULSO {
+    0%, 100% { 
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+    } 50% { 
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+    }
+}
+
+
+
+/*OTRA VERSION LOADER*/
+
+.JLOADER-2
+{
+    width: 100px;
+    height: 100px;
+    position: fixed; /*09/06/2016*/
+    top: 50%;
+    left: 50%;
+    margin-top: -111px;
+    margin-left: -70px;
+}
+
+.JARO-1
+{
+    width:40px;
+    height:40px;
+    border-radius:60px;
+    background-color: transparent;
+    border: 5px solid #8DC73F;
+    border-right: 5px solid transparent; 
+    border-left: 5px solid transparent; 
+    margin: auto;
+    top: 50px;
+    position: relative;
+    -webkit-animation: giro1 1s infinite linear;
+    animation: giro1 1s infinite linear;
+    }
+        
+        
+.JARO-2
+{
+    width:60px;
+    height:60px;
+    border-radius:60px;
+    background-color: transparent;
+    border: 5px solid #134B8D;
+    border-right: 5px solid transparent; 
+    border-left: 5px solid transparent; 
+    margin: auto;
+    -webkit-animation: giro2 1s infinite linear;
+    animation: giro2 1s infinite linear;
+    }
+            
+            
+@-webkit-keyframes giro1
+{
+    0% { transform: rotate(0deg); }
+    100%  { transform: rotate(360deg); }
+    }
+            
+@-webkit-keyframes giro2
+{
+    0% { transform: rotate(140deg); box-shadow: 0 0 35px #134B8D; }
+    50% { transform: rotate(150deg); opacity: 0; }
+    100%  { transform: rotate(-360deg); }
+    }
+    
+    
+@keyframes giro1
+{
+    0% { transform: rotate(0deg); }
+    100%  { transform: rotate(360deg); }
+    }
+            
+@keyframes giro2
+{
+    0% { transform: rotate(140deg); box-shadow: 0 0 35px #134B8D; }
+    50% { transform: rotate(150deg); opacity: 0; }
+    100%  { transform: rotate(-360deg); }
+    }
+    
+    
+/*LOADER PARA GRID*/
+.JLOADER-3
+{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -70px;
+    margin-left: -70px;
+}

@@ -1,0 +1,827 @@
+﻿/*ESTILOS RESPONSIVE - CREADO POR JONATHAN BARRETO */
+
+html {
+    box-sizing: border-box;
+}
+            
+* {
+    box-sizing: border-box;
+    
+}
+
+body {
+    font-size: 18px;
+    font-family: Arial;
+}
+
+.JFLOTA-I
+{
+    clear: left;
+    width:51%;
+    }
+.JFLOTA-D
+{
+    clear: right;
+    width:45%
+    }
+    
+ .JALINEAR-I
+{
+    float: left;    
+    }
+.JALINEAR-D
+{
+    float: right;    
+    }
+
+/*DISEÑO RESPONSIVE PARA LOS FORMULARIOS*/
+
+.JFILA:before {
+    display: table;
+    content: ' ';
+}
+
+.JFILA:after {
+    clear: both;
+}
+
+.JFILA:after {
+    display: table;
+    content: ' ';
+}
+
+[class*="JCELDA-"] {
+    padding: 2px; /*5px*/
+    position: relative;
+    min-height: 1px;
+}
+
+
+/*I-TMACASSI 07/09/2016*/
+.JCELDAPETITORIO-1, .JCELDAPETITORIO-2, .JCELDAPETITORIO-3, .JCELDAPETITORIO-4, .JCELDAPETITORIO-5, .JCELDAPETITORIO-6, .JCELDAPETITORIO-7, .JCELDAPETITORIO-8, .JCELDAPETITORIO-9, .JCELDAPETITORIO-10, .JCELDAPETITORIO-11, .JCELDAPETITORIO-12 {
+    position: relative;
+    min-height: 1px;
+    overflow: hidden; /*nuevo 03_05_20/2016*/
+    /*margin:-2px;*/
+    height: 16px;
+}
+/*F-TMACASSI 07/09/2016*/
+.JCELDA-0 /*auxliar*/ {
+    position: absolute; /*relavite 26/10/2018*/
+    /*float:right;    26/10/2018*/
+    right: 5px;
+}
+       
+/*********** CONTROLES GENERALES *****************/
+/*ETIQUETAS*/
+.JETIQUETA
+{
+    width: 25%;
+    /*padding: 0.2em; 12/07/2016*/
+    /*display: table-cell;*/
+    /*background: linear-gradient(#E9E9E9, #D1D1D1, #C3C3C3, #B5B5B5);*//*#9B9B9B, #737373, #505050, #323232*/
+    /*border-radius: 5px 0 0 5px;*/
+    color: #134B8D;
+    font-weight: 700;
+    /*font-family: Calibri; 12/07/2016*/
+    font-family: Arial; /*12/07/2016*/
+    vertical-align: middle;
+    /*border: 1px solid #B5B5B5;*/
+    font-size: 0.7em;
+}
+
+.JETIQUETA_2 /*ESTILO PARA ETIQUETAS EN GENERAL y SIN NEGRITA*/
+{
+    width: 25%;
+    padding: 0.01em;
+    color: Black;
+    /*font-family: Calibri; 12/07/2016*/
+    font-family: Arial; /*12/07/2016*/
+    vertical-align: middle;
+    font-size: 0.7em;
+    color: #134B8D;
+}
+
+.JETIQUETA_3 /*ESTILO ESPECIAL PARA ETIQUETA CON FONDO COLOR VERDE*/
+{
+    width: 25%;
+    padding: 0.2em;
+    color: Black;
+    font-weight: 700;
+    font-family: Calibri;
+    vertical-align: middle;
+    font-size: 0.8em; /*0.9em *12/07/2016*/
+    color: #8DC73F;
+}
+
+.JETIQUETA_4 /*ESTILO PARA ETIQUETAR DE DESCRIPCION DE CAMPO EJEM: Kg. - S/. - ETC Y CHECKBOX*/
+{    
+    color: Black;
+    font-family: Arial;
+    vertical-align: middle;
+    font-size: 0.7em;
+    color: #134B8D;
+    }
+        
+.JETIQUETA_5
+{
+    font-family: Arial;
+    vertical-align: middle;
+    font-size: 0.7em;
+    color: #134B8D;
+    font-weight:bold;
+    background-color: #D8DBDD;
+    display:block;
+    padding: 5px;
+    }
+    
+
+.JTEXTO-0 /*JB - 18/10/2017 - AUXILIAR PARA OCULTAR UN CAMPO*/
+{
+    /*display:none;*/
+    visibility:hidden;
+}
+
+  
+/*TEXTO Y SELECT*/ 
+.JTEXTO, .JSELECT, .JTEXTO-1, .JTEXTO-2, .JTEXTO-3, .JTEXTO-4, .JTEXTO-5, .JTEXTO-6, .JTEXTO-7, .JTEXTO-8, .JTEXTO-9, .JTEXTO-10, .JTEXTO-11, .JTEXTO-12
+{
+    width: 100%; 
+    padding: 0.7em;
+    border-radius: 5px;
+    border: 1px solid #4BACFF;
+    outline: none;
+    font-size: 0.8em; /*0.9em 12/07/2016*/
+    text-transform: uppercase;
+}
+.JDECIMAL, .JDECIMAL-1, .JDECIMAL-2, .JDECIMAL-3, .JDECIMAL-4, .JDECIMAL-5, .JDECIMAL-6, .JDECIMAL-7, .JDECIMAL-8, .JDECIMAL-9, .JDECIMAL-10, .JDECIMAL-11, .JDECIMAL-12
+{
+    width: 100%; 
+    padding: 0.7em;
+    border-radius: 5px;
+    border: 1px solid #4BACFF;
+    outline: none;
+    font-size: 0.8em; /*0.9em 12/07/2016*/
+    text-transform: uppercase;
+}
+
+textarea
+{
+    resize: none;
+    font-size: 1em !important; /*12/07/2016*/
+    }
+
+.JTEXTAREA
+{
+    width: 100%;    
+    }
+
+/*ESTILO ESPECIAL PARA NUMEROS PEQUEÑOS*/
+.JTEXTO-NUMERICO
+{
+    width: 50%;    
+}
+
+.JNUMERO, .JFECHA, .JHORA
+{        
+    padding: 0.7em;
+    border-radius: 5px;
+    border: 1px solid #4BACFF;
+    outline: none;
+    font-size: 0.8em; /*0.9em 12/07/2016*/
+    text-transform: uppercase;
+}
+
+.JNUMERO 
+{
+    width: 100px;
+}
+
+.JFECHA, .JHORA
+{
+    width:90px;    
+}
+
+
+/*BOTONES GENERAL*/
+input[type="button"]:not(.JBOTON-IMAGEN),
+input[type="submit"]:not(.JBOTON-IMAGEN) {
+    outline: 0;
+    background: #2074AC; /*#3F98D2 04/10/2016*/
+    padding: 8px 12px;
+    min-width: 100px;
+    white-space: nowrap;
+    /*user-select: none;*/
+    border: none;   
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.7em; /*12/07/2016*/
+}
+
+input[type="button"]:not(.JBOTON-IMAGEN):focus,
+input[type="submit"]:not(.JBOTON-IMAGEN):focus
+{
+    box-shadow: 0 0 5px 2px #2074AC; /*07/10/2016*/
+    background: White !important;
+    color: #2074AC !important;
+}
+
+.JTEXTO:focus, .JSELECT:focus, .JTEXTO-1:focus, .JTEXTO-2:focus, .JTEXTO-3:focus, .JTEXTO-4:focus, .JTEXTO-5:focus, .JTEXTO-6:focus, 
+.JTEXTO-7:focus, .JTEXTO-8:focus, .JTEXTO-9:focus, .JTEXTO-10:focus, .JTEXTO-11:focus, .JTEXTO-12:focus, .JNUMERO:focus, .JFECHA:focus, .JHORA:focus
+{
+    box-shadow: 0 0 2px 1px #2074AC; /*07/10/2016*/
+}
+
+
+input[type="radio"]::after
+{
+    color: #134B8D;
+    }
+
+/*BOTON ELIMINAR*/
+.JBOTON-ELIMINAR
+{
+    outline:none !important; 
+    margin-left:5% !important;
+    background-color:#FFE1E3 !important; 
+    color:Red !important;
+    border:1px solid #FFA8AC !important;
+    padding:5px !important;
+}
+
+
+
+/*ESTILO PARA ACORDEON SIMPLE*/
+.JDIV-ACOR-TITU, .JDIV-ACOR-VALO, JDIV-ACOR-CONTENIDO
+{
+    display: block;
+    }
+            
+.JDIV-ACOR-TITU
+{
+    border: 1px solid White;
+    background-color: #2074AC; /*2A5788   #134B8D -> 12/07/2016*/
+    color: White;
+    border-radius: 3px;
+    padding: 5px;
+    font-family: Arial; /*12/07/2016*/
+    font-size: 0.8em; /*12/07/2016*/
+    font-weight: bold; /*12/07/2016*/
+}
+
+/*ESTILO SECCION/GRUPO*/
+.JDIV-GRUPO
+{
+    /*background: linear-gradient(#8DC73F, #76A637); 12/07/2016  /*21C640  1B9C33   #547B9F, #344657  #00BA22, #1B9C33  ----8DC73F*/
+    background:#8DC73F ;
+    /*filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#8DC73F', endColorstr='#76A637'); Para IE7-8-9*/
+    padding: 5px;
+    color: White;
+    font-size: 0.8em;
+    font-family: Arial; /*12/07/2016*/
+    font-weight: bold; /*12/07/2016*/
+}
+
+/*ESTILO PARA DIV QUE ENCIERRA LOS CONTROLES*/
+.JDIV-CONTROLES
+{
+    width: 100%;
+    /*overflow: hidden;******/
+    float: left;    
+}
+
+
+/*IMAGEN BUSQUEDA, FAVORITOS E IMAGENES EN GENERAL*/
+
+.JIMG-BUSQUEDA, .JIMG-FAVORITO
+{
+    width:24px;
+    height:24px;
+    cursor:pointer;    
+    margin-top: -2px;
+}
+
+/*27/10/2016
+ESTILO PARA AQUELLOS BOTONES QUE SE VERA COMO UNA IMAGEN
+*/
+.JBOTON-IMAGEN 
+{
+    width:24px;
+    height:24px;
+    cursor:pointer;    
+    margin-top: -1px;
+    background-repeat:no-repeat;
+    background-position:center;
+    border:0;
+    background-color: transparent;
+    background-size: 26px 26px;
+}
+
+
+.JIMG-GENERAL
+{
+    cursor: pointer;
+}
+
+.JCOL-OCULTA /*oculta columna/elemento*/
+{
+    display:none;
+    }
+    
+
+        
+.JBUSQUEDA-ESPECIAL
+{
+    position:absolute;
+    width:97%;
+    max-height:200px;
+    overflow-y:auto;
+    z-index: 1000;
+    /*box-shadow: 0 0 10px #8DC73F;*/
+    /*border:1px solid #8DC73F;*/
+    display:none;
+    }
+    
+.JCAMP-OBLI
+{
+    /*background-color: #FFEEEE;
+    border: 1px solid #FF7676;
+    color: #C03333;*/
+}
+
+
+.JCAMP-OBLI-ROJO
+{
+    background-color: #FFEEEE;
+    border: 1px solid #FF7676;
+    color: #C03333;
+    }
+
+fieldset
+{
+    border:1px solid #3A88DC;
+    }
+
+input:disabled:not(.JBOTON-IMAGEN), textarea:disabled, select:disabled {
+  background-color: #F2F2F2;
+  border: 1px solid #C4C4C4;
+}
+
+input[type="button"]:disabled:not(.JBOTON-IMAGEN)
+{
+    background-color: #C4C4C4;
+    }
+    
+.JBOTON-IMAGEN:disabled
+{
+    opacity:0.5;
+    }
+    
+    
+    
+@media (min-width:769px) { /*and (max-width:1000px)*/
+
+    .JCELDA-1, .JCELDA-2, .JCELDA-3, .JCELDA-4, .JCELDA-5, .JCELDA-6, .JCELDA-7, .JCELDA-8, .JCELDA-9, .JCELDA-10, .JCELDA-11, .JCELDA-12 {
+        float: left;
+    }
+
+    .JCELDA-1 {
+        width: 8.33%;
+    }
+
+    .JCELDA-2 {
+        width: 16.66%;
+    }
+
+    .JCELDA-3 {
+        width: 24.99%;
+    }
+
+    .JCELDA-4 {
+        width: 33.32%;
+    }
+
+    .JCELDA-5 {
+        width: 41.65%;
+    }
+
+    .JCELDA-6 {
+        width: 49.98%;
+    }
+
+    .JCELDA-7 {
+        width: 58.31%;
+    }
+
+    .JCELDA-8 {
+        width: 66.64%;
+    }
+
+    .JCELDA-9 {
+        width: 74.97%;
+    }
+
+    .JCELDA-10 {
+        width: 83.30%;
+    }
+
+    .JCELDA-11 {
+        width: 91.63%;
+    }
+
+    .JCELDA-12 {
+        width: 99.99%;
+    }
+
+    .JCELDA-0 {
+        width: 0.01%;
+    }
+
+    /*ESTILO SIMULANDO SANGRIA IZQUIERDA*/
+    .JESPACIO-IZQ-1
+    {
+        margin-left: 8.33%;
+    }
+   
+    .JESPACIO-IZQ-2
+    {
+        margin-left: 16.66%;
+    }   
+       
+    .JESPACIO-IZQ-3
+    {
+        margin-left: 24.99%;
+    }
+      
+    .JESPACIO-IZQ-4
+    {
+        margin-left: 33.32%;
+    }   
+    
+    .JESPACIO-IZQ-5
+    {
+        margin-left: 41.65%;
+    }
+      
+    .JESPACIO-IZQ-6
+    {
+        margin-left: 49.98%;
+    }  
+        
+    .JESPACIO-IZQ-7
+    {
+        margin-left: 58.31%;
+    }   
+        
+    .JESPACIO-IZQ-8
+    {
+        margin-left: 66.64%;
+    }   
+
+    .JESPACIO-IZQ-9
+    {
+        margin-left: 74.97%;
+    }    
+    
+    .JESPACIO-IZQ-10
+    {
+        margin-left: 83.30%;
+    }
+    
+    .JESPACIO-IZQ-11
+    {
+        margin-left: 91.63%;    
+    }   
+    
+    
+    .JTEXTO-1, .JDECIMAL-1
+    {
+        width: 8.33%;
+        }
+    .JTEXTO-2, .JDECIMAL-2
+    {
+        width: 16.66%;
+        }
+    .JTEXTO-3, .JDECIMAL-3
+    {
+        width: 24.99%;
+        }  
+    .JTEXTO-4, .JDECIMAL-4
+    {
+        width: 33.32%;
+        }      
+    .JTEXTO-5, .JDECIMAL-5
+    {
+        width: 41.65%;
+        }  
+    .JTEXTO-6, .JDECIMAL-6
+    {
+        width: 49.98%;
+        }     
+    .JTEXTO-7, .JDECIMAL-7
+    {
+        width: 58.31%;
+        } 
+    .JTEXTO-8, .JDECIMAL-8
+    {
+        width: 66.64%;
+        }      .            
+    .JTEXTO-9, JDECIMAL-9
+    {
+        width: 74.97%;
+        }      
+    .JTEXTO-10, .JDECIMAL-10
+    {
+        width: 83.30%;
+        }    
+
+    .JTEXTO-11, .JDECIMAL-11
+    {
+        width: 91.63%;
+        }  
+        
+    .JTEXTO-12, .JDECIMAL-12
+    {
+        width: 100%;
+        }  
+        
+        
+    .JTEXTO, .JSELECT, .JTEXTO-1, .JTEXTO-2, .JTEXTO-3, .JTEXTO-4, .JTEXTO-5, .JTEXTO-6, .JTEXTO-7, .JTEXTO-8, .JTEXTO-9, .JTEXTO-10, .JTEXTO-11, .JTEXTO-12, .JNUMERO, .JFECHA, .JHORA, 
+    .JDECIMAL, .JDECIMAL-1, .JDECIMAL-2, .JDECIMAL-3, .JDECIMAL-4, .JDECIMAL-5, .JDECIMAL-6, .JDECIMAL-7, .JDECIMAL-8, .JDECIMAL-9, .JDECIMAL-10, .JDECIMAL-11, .JDECIMAL-12
+    {
+        padding: 0.3em;
+        font-size: 0.7em;
+    }
+        
+    textarea
+    {
+        font-size: 0.9em !important;
+    }
+    
+    body
+    {
+        font-size: 16px;
+    }
+    
+    
+                
+}
+
+
+/**/
+.DatosUsuario
+{
+    border: 1px solid #BABABA;
+    padding:5px;
+    width:100%;     
+    background: #F5F5F5; /*ddd*/ 
+    border-radius: 5px;    
+    }
+    
+/*TOOLTIP -TITTLE*/
+/*.TooltipClinica
+{
+    visibility: hidden;
+    width: auto;
+    background-color: #8DC73F;  
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    font-size:1.1em;
+    box-shadow:0 0 5px black;
+    }*/
+.TooltipClinica
+{
+    visibility: hidden;
+    width: auto;
+    background-color: #2074AC;  
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    font-size:1.1em;
+    /*box-shadow:0 0 5px 2px #8DC73F;*/
+    font-family: arial;
+    font-size: 0.89em;
+    }  
+    
+ legend 
+ {
+    color: #134B8D;
+    font-family: arial;
+    font-size: 0.89em;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    /*border-bottom: 1px dotted black;*/
+}
+[tooltip-direccion='derecha'] {
+    visibility: hidden;
+    width: 120px;
+    background-color: #2074AC;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    left: 115%; /*JB 105% -> 115%*/
+}
+
+    [tooltip-direccion='derecha']::after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        right: 100%; /* To the left of the tooltip */
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent #2074AC transparent transparent;
+    }
+
+[tooltip-direccion='arriba'] {
+    visibility: hidden;
+    width: 120px;
+    background-color: #2074AC;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 115%; /*JB 100% -> 115%*/
+    left: 50%;
+    margin-left: -60px;
+}
+
+    [tooltip-direccion='arriba']::after {
+        content: " ";
+        position: absolute;
+        top: 100%; /* At the bottom of the tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: #2074AC transparent transparent transparent;
+    }
+
+[tooltip-direccion='abajo'] {
+    visibility: hidden;
+    width: 120px;
+    background-color: #2074AC;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 115%; /*JB 100% -> 115%*/
+    left: 50%;
+    margin-left: -60px;
+}
+
+    [tooltip-direccion='abajo']::after {
+        content: " ";
+        position: absolute;
+        bottom: 100%; /* At the top of the tooltip */
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #2074AC transparent;
+    }
+
+
+[tooltip-direccion='izquierda'] {
+    visibility: hidden;
+    width: 120px;
+    background-color: #2074AC;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 115%; /*JB 105% -> 115%*/
+}
+
+    [tooltip-direccion='izquierda']::after {
+        content: " ";
+        position: absolute;
+        top: 50%;
+        left: 100%; /* To the right of the tooltip */
+        margin-top: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent transparent #2074AC;
+    }
+
+.tooltip:hover [tooltip-direccion] {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+[tooltip-direccion] {
+    font-size: 0.89em;
+    font-family: arial;
+}
+
+.JFILA-ESTILO-ARRIBACERO
+{
+    border: 1px solid #8DC73F;
+    border-top:0;
+    }
+    
+.JCELDA-ESTILO-DERECHA
+{
+    border-right: 1px solid #8DC73F;    
+    }
+    
+.JCELDA-ESTILO-ARRIBACERO-IZQCERO
+{
+    border: 1px solid #8DC73F;
+    border-top:0;
+    border-left:0;
+    }
+
+
+/*JB - 15/12/2020*/
+.JSELECT2{
+    background-color: white;
+    border: 1px solid #4BACFF;
+    border-radius: 5px;
+    padding: 0px 5px;
+    position:absolute;
+    color: #134B8D;
+    width:100%;
+    z-index:1;
+    font-size:0.8em;
+}
+
+.JSELECT2  .JSELECT2-ELEMENT {
+    border: 1px solid transparent;
+    border-color: #4BACFF transparent transparent  transparent;
+    display: none;
+    padding: 3px 1px;
+}
+
+.JSELECT2  .JSELECT2-CONTENEDOR .JSELECT2-ELEMENT:hover {
+    background-color: #134B8D;
+    color: white;
+}
+
+.JSELECT2-CONTENEDOR
+{
+    max-height: 150px;
+    overflow-y:auto;    
+}
+
+.JSELECT2 span:first-child:after{
+    position: absolute;
+    content: "";
+    top: 8px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #4BACFF transparent transparent transparent;
+}
+
+.JSELECT2-ACTIVO:after
+{
+    right: 8px !important;
+    top: 2px !important;
+    border-color: transparent transparent #4BACFF transparent !important;
+}
+
+.JSELECT2-INVISIBLE {
+    display:none !important;    
+}
+
+.JSELECT2-VISIBLE {
+    display:block !important;    
+}
+
+.JSELECT2-SELECCION {
+    display:block;
+    width: 100%;
+}
+
+
+.JSELECT2-DESHABILITADO {
+    background-color: lightgray;
+    border: 1px solid gray;
+}

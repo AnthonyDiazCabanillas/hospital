@@ -1,0 +1,228 @@
+/*ESTILOS TABLA RESPONSIVE - CREADO POR JONATHAN BARRETO*/
+
+.JSBDIV_TABLA{
+    float:left; 
+    width:100%; 
+
+}
+
+.JSBTABLA{
+    background: White; /*344657 -CLINICA*/
+    border-collapse: collapse !important; /*separate !important  23/08/2016*/
+    border:1px solid #8DC73F;
+    border-radius: 10px;
+    /*overflow: hidden; - CLINICA*/
+    width: 100%;
+    /*box-shadow: 0 0 10px #8DC73F; 23/08/2016*/
+    font-size: 11px;
+}
+
+.JSBTABLA tr:hover td
+{
+    background-color: #134B8D; /*#E8E8E8 - GRIS*/
+    color: White !important;
+    }
+
+.JSBTABLA th {
+    color: #134B8D; /*#D9D946 -CLINICA*/ /*134B8D*/
+    padding: 10px; /*27/062016   10px*/
+    font-family: "Arial";
+    border: 1px solid #8DC73F; 
+    background-color: #E9EEF4;
+}
+
+.JSBTABLA td {
+    padding: 5px;  /*27/062016   10px*/
+    color: #134B8D; /*White -CLINICA*/    
+    border: 1px solid #8DC73F; /*border-bottom  23/08/2016*/
+    font-family: "Arial";
+}
+
+.JSBTABLA tr { border: 1px solid #8DC73F; /*border-left: none; para firefox*/}/*46627f -CLINICA*/
+
+.JSBTABLA tr:first-child{
+    /*border: none; - CLINICA*/
+}
+
+/*para firefox*/
+.JSBTABLA tr:last-child{
+    /*border: none; - CLINICA*/
+}
+
+/*.JSBTABLA tr:last-child td
+{
+    border: none;
+}CLINICA 23/08/2016*/
+
+
+/*ESTILO ESPECIAL PARA TABLA DE LA BUSQUEDA*/
+.JSBTABLA-1{
+    background: White;
+    border-collapse: separate !important;
+    border-radius: 10px;
+    width: 100%;
+    font-size:11px;
+}
+
+.JSBTABLA-1 th {
+    color: #134B8D; 
+    padding: 5px;
+    font-family: "Arial"; 
+    cursor: default !important;
+    border: 1px solid #8DC73F; 
+}
+
+.JSBTABLA-1 td {
+    padding: 5px;
+    color: #134B8D;
+    border: 1px solid #8DC73F; 
+    font-family: "Arial";
+}
+
+.JSBTABLA-1 tr { border: 1px solid #8DC73F; }
+
+.JSBTABLA-1 tr:hover
+{
+    cursor: pointer;
+    }
+
+.JSBTABLA-1 tr:first-child{
+    /*border: none; - CLINICA*/
+}
+
+/*para firefox*/
+.JSBTABLA-1 tr:last-child{
+    /*border: none; - CLINICA*/
+}
+
+/*.JSBTABLA-1 tr:last-child td
+{
+    border: none;
+}*/
+
+
+
+
+@media (max-width:600px)
+{
+    .JSBTABLA
+    {
+        border-collapse: collapse !important;
+        border: none;
+        font-size: 14px; /*13/01/2016*/
+        }
+    
+    .JSBDIV_TABLA
+    {
+        overflow-x:auto;
+        }
+    
+    /*table, tbody, td, tr { 
+        display: block; 
+    }
+    
+    .JSBDIV_TABLA{
+        width:99%; 
+    }
+    
+    OCULTANTO LA CABECERA ORIGINAL
+    .JSBTABLA tr:first-child{
+        display: none;
+    }
+    ESPACIO SUPERIOR e INFERIOR DE LA PRIMERA FILA DE DATOS
+    .JSBTABLA tr:nth-child(2){
+        padding: 10px 0 10px 0;
+    }
+
+    .JSBTABLA tr { 
+        border-bottom: 1px solid #8DC73F; 
+        padding: 0 0 10px 0;
+    }
+
+    .JSBTABLA td { 
+        position: relative;
+        padding-left: 50%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-bottom: none;
+    }
+
+    .JSBTABLA td::before{
+        content: attr(class);
+        font-weight: bold;
+        position: absolute;
+        white-space: nowrap;
+        width: 45%;
+        left: 8px;
+        font-family: "Calibri"; 
+        color: #134B8D; 
+    }*/
+}
+
+
+.JPAGINADO {
+    /*display: inline-block;*/
+    padding-left: 0;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+ 
+.JPAGINADO table > tbody > tr > td {
+    display: inline;
+    border: none; /*CLINICA*/
+}
+ 
+.JPAGINADO table > tbody > tr > td > a,
+.JPAGINADO table > tbody > tr > td > span {
+    position: relative;
+    float: left;
+    padding: 8px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;
+    color: #dd4814;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    margin-left: -1px;
+}
+ 
+.JPAGINADO table > tbody > tr > td > span {
+    position: relative;
+    float: left;
+    padding: 8px 12px;
+    line-height: 1.42857143;
+    text-decoration: none;    
+    margin-left: -1px;
+    z-index: 2;
+    color: #aea79f;
+    background-color: #f5f5f5;
+    border-color: #dddddd;
+    cursor: default;
+}
+ 
+.JPAGINADO table > tbody > tr > td:first-child > a,
+.JPAGINADO table > tbody > tr > td:first-child > span {
+    margin-left: 0;
+    border-bottom-left-radius: 4px;
+    border-top-left-radius: 4px;
+}
+ 
+.JPAGINADO table > tbody > tr > td:last-child > a,
+.JPAGINADO table > tbody > tr > td:last-child > span {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+}
+ 
+.JPAGINADO table > tbody > tr > td > a:hover,
+.JPAGINADO table > tbody > tr > td > span:hover,
+.JPAGINADO table > tbody > tr > td > a:focus,
+.JPAGINADO table > tbody > tr > td > span:focus {
+    color: #97310e;
+    background-color: #eeeeee;
+    border-color: #dddddd;
+}
+
+.JFILA-SELECCIONADA
+{
+    background-color: #134B8D;
+    color: White !important;
+    }

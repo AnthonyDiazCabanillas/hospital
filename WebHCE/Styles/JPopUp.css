@@ -1,0 +1,145 @@
+﻿.JFONDO-POPUP-1
+{
+    background:rgba(0,0,0,0.40); 
+    position:fixed; 
+    width:100%; 
+    height:100%; 
+    top:0; 
+    left:0;
+    z-index: 999;
+    /*-webkit-animation: JANIMACION-FONDO 0.5s 1;*/
+}
+            
+.JCONTENIDO-POPUP-1
+{
+    position:fixed; /*absolute->fixed 13/07/2016 - JB*/
+    background-color:#EFEFEF; 
+    min-width:30%;             
+    border-radius: 10px;
+    z-index:1000;
+    box-shadow: 0 0 10px #363636;
+    /*-webkit-animation: JANIMACION-POPUP 0.5s 1;*/
+}
+    
+.JCONTENIDO-POPUP-1 > header
+{
+    border-radius: 10px 10px 0 0;
+    color: White;
+    padding:0.8em;
+    border-bottom:1px solid #2074AC;
+    background-color:#2074AC;
+    font-family:arial;
+    font-size:0.88em;
+    font-weight:bold;
+    /*background:linear-gradient(#0149A0, #013F8A, #02316B, #012652); */
+    /*#474747, #363636, #292929, #101010*/
+    
+}
+            
+.JCONTENIDO-POPUP-1 > div 
+{
+    padding:5px;
+    }
+          
+.JCONTENIDO-POPUP-1 > footer
+{
+    padding:0.6em; 
+    text-align:right;
+    border-top:1px solid #3A88DC;
+    }
+          
+.JCONTENIDO-POPUP-1 > footer >  input[type='submit'], .JCONTENIDO-POPUP-1 > footer > input[type='button']
+{
+    /*background:linear-gradient(#0149A0, #013F8A, #02316B, #012652);*/ /*#474747, #363636, #292929, #101010*/
+    background-color:#2074AC;
+    border:1px solid #2074AC; 
+    color:White; 
+    padding:7px 15px; 
+    margin-left: 10px;
+    border-radius:5px;
+    height: 30px;  /*13/07/2016 - JB*/
+    }
+          
+.JCAMP-OBLIGATORIO
+{
+    display:block;
+    color:#C22A00;
+    margin-top:10px;
+    margin-left:5px;
+    margin-bottom: 10px
+    }
+          
+          
+          
+          
+/*JB - POPUP PARA CARGAR DESDE HTML*/
+.JFONDO-POPUP-2
+{
+    background:rgba(0,0,0,0.40); 
+    position:fixed; 
+    width:100%; 
+    height:100%; 
+    top:0; 
+    left:0;
+    z-index:999;
+    /*-webkit-animation: JANIMACION-FONDO 0.5s 1;*/
+}
+
+.JCONTENIDO-POPUP-2
+{
+    position:fixed; /*absolute->fixed 13/07/2016 - JB*/
+    background-color:#EFEFEF; 
+    min-width:30%;             
+    border-radius: 10px;  
+    z-index:1000;
+    box-shadow: 0 0 15px 5px #363636;
+    /*-webkit-animation: JANIMACION-POPUP 0.5s 1;*/
+}
+    
+.JCONTENIDO-POPUP-2 > header
+{
+    border-radius: 10px 10px 0 0;
+    color: White;
+    padding:1em;  /*0.8em 29/01/2020*/
+    border-bottom:1px solid #2074AC;
+    background-color:#2074AC;
+    font-family:arial;
+    font-size:0.88em;
+    font-weight:bold;
+    /*background:linear-gradient(#0149A0, #013F8A, #02316B, #012652); */
+    /*#474747, #363636, #292929, #101010*/
+    
+}
+            
+.JCONTENIDO-POPUP-2 > div 
+{
+    padding:5px;
+    }
+          
+.JCONTENIDO-POPUP-2 > footer
+{
+    padding:0.6em; 
+    text-align:right;
+    border-top:1px solid #3A88DC;
+    }
+          
+.JCONTENIDO-POPUP-2 > footer >  input[type='submit'], .JCONTENIDO-POPUP-1 > footer > input[type='button']
+{
+    /*background:linear-gradient(#0149A0, #013F8A, #02316B, #012652);*/ /*#474747, #363636, #292929, #101010*/
+    background-color:#2074AC;
+    border:1px solid #2074AC; 
+    color:White; 
+    padding:7px 15px; 
+    margin-left: 10px;
+    border-radius:5px;
+    height: 30px;  /*13/07/2016 - JB*/
+    }
+          
+          
+@media (max-width:500px)
+{
+    .JCONTENIDO-POPUP-1
+    {
+        width: 98%;
+        }
+    }
