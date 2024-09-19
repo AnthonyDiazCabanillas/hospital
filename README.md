@@ -1,8 +1,8 @@
-# Aplicación web csf-app-base
+# Aplicación web csf-web-hce-hospital
 
 ## Descripción
 
-Esta es una aplicación web desarrollada en **ASP.NET Core** que proporciona funcionalidades de [nombre de la funcionalidad principal, por ejemplo, gestión de usuarios, reportes, etc.]. La aplicación sigue una arquitectura de MVC (Modelo-Vista-Controlador) y utiliza una base de datos SQL Server.
+Esta es una aplicación web desarrollada en **ASP.NET Core** que proporciona funcionalidades de historia clínica electrónica para hospital. La aplicación sigue una arquitectura de MVC (Modelo-Vista-Controlador) y utiliza una base de datos SQL Server.
 
 ## Requisitos Previos
 
@@ -18,7 +18,7 @@ Sigue los siguientes pasos para configurar y ejecutar la aplicación en tu entor
 
 1. **Clonar el repositorio**:
    ```bash
-   git clone https://github.com/ClinicaSanFelipe/csf-app-base.git
+   git clone https://github.com/ClinicaSanFelipe/csf-web-hce-hospital.git
    cd csf-app-base
    ```
 
@@ -47,10 +47,9 @@ Sigue los siguientes pasos para configurar y ejecutar la aplicación en tu entor
 
 ## Características
 
-- Autenticación de usuarios mediante Identity.
-- Gestión de roles y permisos.
-- Integración con APIs externas.
-- Sistema de reportes dinámico.
+- Autenticación de usuarios.
+- HCE de pacientes.
+- Reportes.
 
 ## Uso
 
