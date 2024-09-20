@@ -2,9 +2,9 @@
 '    Copyright Clinica San Felipe S.A.C 2024. Todos los derechos reservados.
 '    Version  Fecha       Autor       Requerimiento   Objetivo específico
 '    1.0      15/01/2024  CRODRIGUEZ  REQ 2023-012268 Filtrar envío correos para interconsultas
-'    1.1      02/02/2024  CRODRIGUEZ  REQ 2023-021287 Se envia correo al agregar o cambiar
-'                                                     dieta del paciente 
+'    1.1      02/02/2024  CRODRIGUEZ  REQ 2023-021287 Se envia correo al agregar o cambiar dieta del paciente 
 '    1.2      29/04/2024  GLluncor    REQ 2024-008691 - Actualizar URL ROE
+'    1.3      19/06/2024  FGUEVARA    REQ-2024-011009 RESULTADOS ROE - HC
 '****************************************************************************************
 Imports System.Data
 Imports System.IO
@@ -4460,13 +4460,16 @@ Public Class InformacionPaciente
         Dim tabla As New DataTable()
 
         Try
-            bRutaWebRce = HttpContext.Current.Server.MapPath("/").Contains("wwwroot")
+            'INI 1.3
+            'bRutaWebRce = HttpContext.Current.Server.MapPath("/").Contains("wwwroot")
 
-            If bRutaWebRce Then
-                Ruta = HttpContext.Current.Server.MapPath("/") + "\Archivos\" + NombreArchivo
-            Else
-                Ruta = HttpContext.Current.Server.MapPath("\Archivos\" + NombreArchivo)
-            End If
+            'If bRutaWebRce Then
+            '    Ruta = HttpContext.Current.Server.MapPath("/") + "\Archivos\" + NombreArchivo
+            'Else
+            '    Ruta = HttpContext.Current.Server.MapPath("\Archivos\" + NombreArchivo)
+            'End If
+            'FIN 1.3
+
             'TMACASSI 14/09/2016
             'Ruta = sRutaArchivos + NombreArchivo
             tabla = oRceLaboratorioLN.Sp_RceResultadoAnalisisCab_Consulta(oRceLaboratioE)
@@ -4476,16 +4479,18 @@ Public Class InformacionPaciente
                     Mensaje = "ERROR;El informe se encuentra en proceso."
                     Return Mensaje
                 End If
-                File.WriteAllBytes(Ruta, tabla.Rows(index)("blb_resultado"))
+                'File.WriteAllBytes(Ruta, tabla.Rows(index)("blb_resultado")) '1.3 
             Next
-            RutaArchivo = ("/Archivos/" + NombreArchivo).Replace("//", "/")
+            'RutaArchivo = ("/Archivos/" + NombreArchivo).Replace("//", "/") ' 1.3
 
             'Dim ie
             'ie = CreateObject("internetexplorer.application")
             'ie.Navigate(RutaArchivo)
             'ie.Visible = True
 
-            Return RutaArchivo
+            'Return RutaArchivo '.13
+            Return "" ' 1.3
+
         Catch ex As Exception
             Return ex.Message.ToString() + "****" + Ruta + "****" + CType(tabla.Rows.Count, String)
         End Try
@@ -8610,9 +8615,9 @@ Public Class InformacionPaciente
             Dim CadenaEncriptada = ObtenerUrlRoeVersion2(wEmpresa, wTipoDoc, wDocIdentidad)
 
             If tabla2.Rows.Count > 0 Then
-                wLink = Replace(Trim(tabla2.Rows(0)("nombre").ToString().Trim() & ""), "%empresa%", CadenaEncriptada(0), 1)
-                wLink = Replace(Trim(wLink), "%tipodoc%", CadenaEncriptada(1), 1)
-                wLink = Replace(Trim(wLink), "%docidentidad%", CadenaEncriptada(2), 1)
+                wLink = Replace(Trim(tabla2.Rows(0)("nombre").ToString().Trim() & ""), "%em%", CadenaEncriptada(0), 1)
+                wLink = Replace(Trim(wLink), "%td%", CadenaEncriptada(1), 1)
+                wLink = Replace(Trim(wLink), "%di%", CadenaEncriptada(2), 1)
             End If
 
             Return "OK*" + wLink
@@ -10324,5 +10329,35 @@ Public Class InformacionPaciente
         End Try
     End Function
     'FIN 1.2
+
+    <WebMethod>
+    Public Shared Function MostrarTimeOutInactividad() As Int32
+        Return ObtenerTimeOutInactividad()
+    End Function
+    Private Shared Function ObtenerTimeOutInactividad() As Int32
+        Try
+            Dim objtabla As TablasE = New TablasE()
+            objtabla.CodTabla = "HCEINACTIVIDADTIME"
+            objtabla.Buscar = ""
+            objtabla.Key = 0
+            objtabla.NumeroLineas = 0
+            objtabla.Orden = 24
+            Dim tabla_ As New DataTable()
+            Dim oTablasLN As New TablasLN()
+            tabla_ = oTablasLN.Sp_Tablas_Consulta(objtabla)
+            If tabla_.Rows.Count() > 0 Then
+                Dim time As Int32 = 0
+                For Each row As DataRow In tabla_.Rows
+                    time = Convert.ToInt32(row("valor").ToString())
+                Next
+                Return time
+            Else
+                Return 0
+            End If
+
+        Catch ex As Exception
+            Return 0
+        End Try
+    End Function
 
 End Class

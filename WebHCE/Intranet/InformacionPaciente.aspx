@@ -5,6 +5,7 @@
  Version  Fecha       Autor       Requerimiento
  1.0      18/12/2023  CRODRIGUEZ  REQ 2023-017525 No acceso a escalas de enfermería
  1.1      20/02/2024  FGONZALES   REQ 2023-020511 cambiar campo obligatorio a opcional
+ 1.2      19/06/2024  FGUEVARA    REQ-2024-011009  RESULTADOS ROE - HC
 ====================================================================================================--%>
 <%@ Page Title="" Language="vb" AutoEventWireup="false" MasterPageFile="~/Site.Master" CodeBehind="InformacionPaciente.aspx.vb" Inherits="WebHCE.InformacionPaciente" EnableEventValidation="false" %>
 <%@ Register Src="ControlesUsuario/PopupProcedimientoConsentimiento.ascx" TagName="cuProcedimientoConsentimiento" TagPrefix="uc1" %>
@@ -1029,32 +1030,35 @@
 
 
                     if (IdRecetaCab != undefined && IdRecetaCab != null && IdRecetaCab != "") {
-                        $.ajax({
-                            url: "InformacionPaciente.aspx/VerInformeAnalisis",
-                            type: "POST",
-                            contentType: "application/json; charset=utf-8",
-                            data: JSON.stringify({
-                                IdRecetaCab: IdRecetaCab
-                            }),
-                            dataType: "json",
-                            error: function (dato1, datos2, dato3) {
+                         $.ajax({
+                             url: "InformacionPaciente.aspx/VerInformeAnalisis",
+                             type: "POST",
+                             contentType: "application/json; charset=utf-8",
+                             data: JSON.stringify({
+                                 IdRecetaCab: IdRecetaCab
+                             }),
+                             dataType: "json",
+                             error: function (dato1, datos2, dato3) {
 
-                            }
+                             }
                         }).done(function (oOB_JSON)
                         {
-                            fn_LOAD_OCUL();
-                            fn_GuardaLog("LABORATORIO", "Se visualizo informe " + IdRecetaCab);
-                            if (oOB_JSON.d.toString().split(";").length > 1) {
-                                $.JMensajePOPUP("Aviso", oOB_JSON.d.toString().split(";")[1], "", "Cerrar", "fn_oculta_mensaje()");
-                            } else {
-                                var ventana_popup = window.open(oOB_JSON.d, "_blank");
-                                if (ventana_popup == null || typeof (ventana_popup) == undefined) {
-                                    //ventana popup bloqueada
-                                } else {
-                                    //ventana_popup.focus();
-                                }
-                            }
-                        });
+                             fn_LOAD_OCUL();
+                             fn_GuardaLog("LABORATORIO", "Se visualizo informe " + IdRecetaCab);
+                             if (oOB_JSON.d.toString().split(";").length > 1) {
+                                 $.JMensajePOPUP("Aviso", oOB_JSON.d.toString().split(";")[1], "", "Cerrar", "fn_oculta_mensaje()");
+                             } else {
+                                 window.open("VisorReporte.aspx?OP=ANALISISLABORATORIO&Valor=" + IdRecetaCab.toString()); //1.2
+                                 // INI 1.2
+                                 //var ventana_popup = window.open(oOB_JSON.d, "_blank");
+                                 //if (ventana_popup == null || typeof (ventana_popup) == undefined) {
+                                 //    //ventana popup bloqueada
+                                 //} else {
+                                 //    //ventana_popup.focus();
+                                 //}
+                                 // FIN 1.2
+                             }
+                         });                
 
                         $.ajax({
                             url: "InformacionPaciente.aspx/LaboratorioCompletado",
@@ -8706,7 +8710,7 @@
                                                             <input type="hidden" id="hfRecetaTreeViewSeleccionado" />
                                                             <input type="hidden" id="hfFlgVerificadoLab" />
                                                             <input type="hidden" id="hfEstadoAnalisis" />
-                                                           <div class="tooltip">
+                                                            <div class="tooltip">
                                                                 <input type="button" id="imgRoeLaboratorio" title="ROE" class="JBOTON-IMAGEN" name="05/01/03" style="background-image:url(../Imagenes/ROE2.png);" style="background-size: 30px 30px;width: 30px;height: 30px;"/>  <%--Petitorio_Laboratorio.png  CAMBIO IMG  Microscopio1 width:35px;height:35px;background-size: 30px 30px;--%>
                                                                 <span tooltip-direccion="arriba">ROE</span> 
                                                             </div>
@@ -11005,6 +11009,64 @@
 
         var data_permiso;
      </script>
+
+  <script>
+      let timeoutHandle;
+
+      var Minutos = 15;//se pone por default se va a agregar valor desde la base de datos
+      var timeOutPeriodo = Minutos * 60 * 1000;//Convenimos a Molisegundos
+      ObtenerTimeOutBD();
+
+      function ObtenerTimeOutBD() {
+          try {
+              $.ajax({
+                  url: "InformacionPaciente.aspx/MostrarTimeOutInactividad",
+                  type: "POST",
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  error: function (dato1, datos2, dato3) {
+                  }
+              }).done(function (oOB_JSON) {
+                  let dto = oOB_JSON.d;
+                  if (dto > 0) {
+                      timeOutPeriodo = dto * 60 * 1000;
+                  }
+              });
+          }
+          catch (error) {
+
+          }
+      }
+
+      function ResetTimeOut() {
+          clearTimeout(timeoutHandle);
+          timeoutHandle = setTimeout(LogoutTimeOut, timeOutPeriodo);
+      }
+
+      function LogoutTimeOut() {
+          try {
+              $.ajax({
+                  url: "InformacionPaciente.aspx/CerrarSesion",
+                  type: "POST",
+                  contentType: "application/json; charset=utf-8",
+                  dataType: "json",
+                  error: function (dato1, datos2, dato3) {
+                  }
+              }).done(function (oOB_JSON) {
+                  window.location.href = "ConsultaPacienteHospitalizado.aspx";
+              });
+          }
+          catch (error) {
+              window.location.href = "ConsultaPacienteHospitalizado.aspx";
+          }
+      }
+
+      document.addEventListener('mousemove', ResetTimeOut);
+      document.addEventListener('keypress', ResetTimeOut);
+      document.addEventListener('click', ResetTimeOut);
+      ResetTimeOut();
+
+  </script>
   
     <input type="hidden" id="hfCodigoFormulario" value="86" runat="server" />
     <input type="hidden" id="hfAcordeonAbierto" value="" runat="server" />

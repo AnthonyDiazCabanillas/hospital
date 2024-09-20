@@ -1,4 +1,10 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Laboratorio.aspx.vb" Inherits="WebHCE.Laboratorio" %>
+﻿<!-- ' **********************************************************************************************************************
+'    Copyright Clinica San Felipe S.A.C 2023. Todos los derechos reservados.
+'    Version     Fecha           Autor       Requerimiento
+'    1.1         19/06/2024      FGUEVARA    REQ-2024-011009  RESULTADOS ROE - HC
+'*********************************************************************************************************************** -->
+
+<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Laboratorio.aspx.vb" Inherits="WebHCE.Laboratorio" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -197,6 +203,7 @@
 
 
             if (IdRecetaCab != undefined && IdRecetaCab != null && IdRecetaCab != "") {
+
                 $.ajax({
                     url: "PopUp/Laboratorio.aspx/VerInformeAnalisis2",
                     type: "POST",
@@ -214,14 +221,18 @@
                     if (oOB_JSON.d.toString().split(";").length > 1) {
                         $.JMensajePOPUP("Aviso", oOB_JSON.d.toString().split(";")[1], "", "Cerrar", "fn_oculta_mensaje()");
                     } else {
-                        var ventana_popup = window.open(oOB_JSON.d, "_blank");
-                        if (ventana_popup == null || typeof (ventana_popup) == undefined) {
-                            //ventana popup bloqueada
-                        } else {
-                            //ventana_popup.focus();
-                        }
+                        window.open("VisorReporte.aspx?OP=ANALISISLABORATORIO&Valor=" + IdRecetaCab.toString()); //1.1
+                        // INI 1.1
+                        //var ventana_popup = window.open(oOB_JSON.d, "_blank");
+                        //if (ventana_popup == null || typeof (ventana_popup) == undefined) {
+                        //    //ventana popup bloqueada
+                        //} else {
+                        //    //ventana_popup.focus();
+                        //}
+                        // FIN 1.1
                     }
                 });
+
 
             } else {
                 $.JMensajePOPUP("Aviso", "Debe seleccionar un análisis.", "", "Cerrar", "fn_oculta_mensaje()");

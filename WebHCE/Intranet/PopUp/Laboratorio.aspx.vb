@@ -1,4 +1,10 @@
-﻿Imports System.Data
+﻿' **********************************************************************************************************************
+'    Copyright Clinica San Felipe S.A.C 2023. Todos los derechos reservados.
+'    Version     Fecha           Autor       Requerimiento
+'    1.1         19/06/2024      FGUEVARA    REQ-2024-011009:  RESULTADOS ROE - HC
+'***********************************************************************************************************************
+
+Imports System.Data
 Imports System.IO
 Imports Entidades.LaboratorioE
 Imports LogicaNegocio.LaboratorioLN
@@ -11,7 +17,7 @@ Public Class Laboratorio
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
-
+            Session(sIdeHistoria) = 0 '1.1
             If Not IsNothing(Request.Params("CodigoAtencion")) Then
                 hfCodAtencionLabPopUp.Value = Request.Params("CodigoAtencion").Trim()
             End If
@@ -261,13 +267,16 @@ Public Class Laboratorio
         Dim tabla As New DataTable()
 
         Try
-            bRutaWebRce = HttpContext.Current.Server.MapPath("/").Contains("wwwroot")
+            'INI 1.1
+            'bRutaWebRce = HttpContext.Current.Server.MapPath("/").Contains("wwwroot")
 
-            If bRutaWebRce Then
-                Ruta = HttpContext.Current.Server.MapPath("/") + "\Archivos\" + NombreArchivo
-            Else
-                Ruta = HttpContext.Current.Server.MapPath("\Archivos\" + NombreArchivo)
-            End If
+            'If bRutaWebRce Then
+            '    Ruta = HttpContext.Current.Server.MapPath("/") + "\Archivos\" + NombreArchivo
+            'Else
+            '    Ruta = HttpContext.Current.Server.MapPath("\Archivos\" + NombreArchivo)
+            'End If
+            'FIN 1.1
+
             'TMACASSI 14/09/2016
             'Ruta = sRutaArchivos + NombreArchivo
             tabla = oRceLaboratorioLN.Sp_RceResultadoAnalisisCab_Consulta(oRceLaboratioE)
@@ -277,16 +286,18 @@ Public Class Laboratorio
                     Mensaje = "ERROR;El informe se encuentra en proceso."
                     Return Mensaje
                 End If
-                File.WriteAllBytes(Ruta, tabla.Rows(index)("blb_resultado"))
+                'File.WriteAllBytes(Ruta, tabla.Rows(index)("blb_resultado")) '1.1
             Next
-            RutaArchivo = ("/Archivos/" + NombreArchivo).Replace("//", "/")
+            'RutaArchivo = ("/Archivos/" + NombreArchivo).Replace("//", "/") '1.1
 
             'Dim ie
             'ie = CreateObject("internetexplorer.application")
             'ie.Navigate(RutaArchivo)
             'ie.Visible = True
 
-            Return RutaArchivo
+            'Return RutaArchivo '1.1
+            Return "" '1.1
+
         Catch ex As Exception
             Return "ERROR;" + ex.Message.ToString() + "****" + Ruta + "****" + CType(tabla.Rows.Count, String)
         End Try

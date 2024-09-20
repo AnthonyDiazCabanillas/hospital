@@ -2,6 +2,7 @@
 '    Copyright Clinica San Felipe S.A.C 2023. Todos los derechos reservados.
 '    Version     Fecha           Autor       Requerimiento
 '    1.1         20/10/2023      AROMERO     REQ-2023-017255:  REPORTE HISTORIA CLINICA HOPITAL
+'    1.2         19/06/2024      FGUEVARA    REQ-2024-011009:  RESULTADOS ROE - HC
 '***********************************************************************************************************************
 Imports Entidades.HospitalE
 Imports LogicaNegocio.HospitalLN
@@ -244,6 +245,10 @@ Public Class VisorReporte
                 oHospitalE.IdeHistoria = Session(sIdeHistoria)
                 oHospitalE.TipoDoc = 11
                 dt = oHospitalLN.Sp_RceHospitalDoc_Consulta(oHospitalE)
+            ElseIf Request.Params("OP") = "ANALISISLABORATORIO" Then '1.2
+                oHospitalE.IdeGeneral = Request.Params("Valor") '1.2
+                oHospitalE.TipoDoc = 13 '1.2
+                dt = oHospitalLN.Sp_RceHospitalDoc_Consulta(oHospitalE) '1.2
             ElseIf Request.Params("OP") = "IM" Then
                 'Dim Reporte1 As New dsHospital_ReporteTableAdapters.Rp_RceRecetaMedicamentoTableAdapter()
                 tabla = New DataTable("Rp_RceRecetaMedicamento")
@@ -956,6 +961,19 @@ Public Class VisorReporte
                 Response.BinaryWrite(docu)
                 Response.Flush()
                 'Response.Close()
+                'INI 1.2
+            ElseIf Request.Params("OP") = "ANALISISLABORATORIO" Then
+                Dim docu As Byte()
+                Response.Clear()
+                Response.Buffer = True
+                Response.Charset = ""
+                Response.Cache.SetCacheability(HttpCacheability.NoCache)
+                Response.ContentType = "application/pdf"
+                docu = DirectCast(dt.Rows(0)("blb_resultado"), Byte())
+                Response.AddHeader("content-length", docu.Length.ToString())
+                Response.BinaryWrite(docu)
+                Response.Flush()
+                'FIN 1.2
             ElseIf Request.Params("OP") = "ME" Then 'Or Request.Params("OP") = "EC" 23/09/2020 comentado
                 Dim docu As Byte()
                 Response.Clear()
