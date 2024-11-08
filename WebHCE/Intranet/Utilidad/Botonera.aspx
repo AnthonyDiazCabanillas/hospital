@@ -1,4 +1,12 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Botonera.aspx.vb" Inherits="WebHCE.Botonera" %>
+﻿<%--''====================================================================================================
+ @Copyright Clinica San Felipe S.A.C. 2023. Todos los derechos reservados.
+====================================================================================================
+ MODIFICACIONES:
+ Version  Fecha       Autor       Requerimiento         COMENTARIO
+ 1.0      06/11/2024  FCHUJE      REQ 2024-025779       Inclusión de Link de Patólogos Especializados en HCE
+====================================================================================================--%>
+
+<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="Botonera.aspx.vb" Inherits="WebHCE.Botonera" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -305,14 +313,14 @@
             $("#imgRiskCalculator").click(function ()
             {
                 let sDescripcionAcordeon = 'HCE_CALCULADOR_RIEGOS_Q';
-                fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción");
+                try { fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción"); } catch {}
                 window.open("https://riskcalculator.facs.org/RiskCalculator/Outcome.jsp");
             });
 
             $("#imgGuiasClinicas").click(function ()
             {
                 let sDescripcionAcordeon = 'HCE_GUIAS_PRACTICAS_CLINICAS';
-                fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción");
+                try { fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción"); } catch {}
                 window.open("https://login.mcg.com/account/login?returnUrl=https%3A%2F%2Fcgi.careguidelines.com%2F&ClientId=Careweb");
                 //ttps://login.mcg.com/account/login?returnUrl=https%3A%2F%2Fcgi.careguidelines.com%2F&ClientId=Careweb
                 //ttp://192.168.22.251:8775/ed23/
@@ -321,7 +329,7 @@
             $("#imgSinadef").click(function ()
             {
                 let sDescripcionAcordeon = 'HCE_SINADEF';
-                fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción");
+                try { fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción"); } catch {}
                 window.open("https://www.minsa.gob.pe/defunciones/");
             });
 
@@ -332,10 +340,17 @@
 
             $("#imgInterconTumores").click(function () {
                 let sDescripcionAcordeon = 'HCE_INTERCONSULTA';
-                fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción de comité de tumores");
+                try { fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción de comité de tumores"); } catch {}
                 window.open("https://docs.google.com/forms/d/e/1FAIpQLSdU2p32v4wcBD65YrW_1F2KSxfwMbTJrRrH_XzoQVOfiaIzOA/viewform");
             });
-            
+            //Inicio 1.0
+            $("#imgPatologoEspecializadoUrl").click(function () {
+                let sDescripcionAcordeon = 'HCE_Patologo';
+                try { fn_GuardaLog(sDescripcionAcordeon, "Se ingreso a la opción de Patologos especializados"); }
+                catch {}
+                window.open("https://intranet.patologosespecializados.com.pe/");
+            });
+            //FIN 1.0
         });
 
         function fn_InvocaAlertaSuspension()
@@ -478,6 +493,12 @@
                     <img src="../Imagenes/intercon.png" alt="" class="JIMG-GENERAL" id="imgInterconTumores" style="border-radius:5px;" width="35px" height="35" />
                     <span tooltip-direccion="abajo">Interconsulta al Comité de Tumores</span>
                 </div>
+                <%-- 1.0 INICIO --%>
+                  <div class="tooltip">
+                      <img src="../Imagenes/LogoPATESP.jpeg" alt="" class="JIMG-GENERAL" id="imgPatologoEspecializadoUrl" style="border-radius:5px;" width="45px" height="35" />
+                      <span tooltip-direccion="abajo">Patólogos Especializados</span>
+                  </div>
+                <%-- 1.0 FIN --%>
             </div>
         </div>
     </div>
