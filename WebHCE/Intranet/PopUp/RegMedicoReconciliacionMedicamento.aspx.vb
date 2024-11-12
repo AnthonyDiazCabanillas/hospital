@@ -1,9 +1,4 @@
-﻿' ***************************************************************************************
-'    Copyright Clinica San Felipe S.A.C 2024. Todos los derechos reservados.
-'    Version  Fecha       Autor       Requerimiento   Objetivo específico
-'    1.0      07/11/2024  CRODRIGUEZ  REQ 2024-023820 Informe repetido en SIC
-'****************************************************************************************
-Imports Entidades.AlergiaE
+﻿Imports Entidades.AlergiaE
 Imports LogicaNegocio.AlergiaLN
 Imports Entidades.MedicamentosE
 Imports LogicaNegocio.MedicamentosLN
@@ -222,39 +217,38 @@ Public Class RegMedicoReconciliacionMedicamento
 
     Public Function GenerarPDF_() As String
         Try
-            'INI 1.0
-            'Dim CnnBD As String = ConfigurationManager.ConnectionStrings("CnnBD").ConnectionString
-            'Dim oHospitalLN As New HospitalLN()
-            'Dim oHospitalE As New HospitalE()
+            Dim CnnBD As String = ConfigurationManager.ConnectionStrings("CnnBD").ConnectionString
+            Dim oHospitalLN As New HospitalLN()
+            Dim oHospitalE As New HospitalE()
 
-            'Dim cn As New SqlConnection(CnnBD)
+            Dim cn As New SqlConnection(CnnBD)
 
-            'Dim pagina As New InformacionPaciente() '31/01/2017
-            'Dim pdf_byte As Byte() = pagina.ExportaPDF("ME") '31/01/2017
+            Dim pagina As New InformacionPaciente() '31/01/2017
+            Dim pdf_byte As Byte() = pagina.ExportaPDF("ME") '31/01/2017
 
-            ''Paso 1
-            'oHospitalE.TipoDoc = 11
-            'oHospitalE.CodAtencion = Session(sCodigoAtencion)
-            'oHospitalE.CodUser = Session(sCodUser)
-            'oHospitalE.Descripcion = Session(sIdeHistoria) 'TMACASSI 08/02/2017
-            'oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
+            'Paso 1
+            oHospitalE.TipoDoc = 11
+            oHospitalE.CodAtencion = Session(sCodigoAtencion)
+            oHospitalE.CodUser = Session(sCodUser)
+            oHospitalE.Descripcion = Session(sIdeHistoria) 'TMACASSI 08/02/2017
+            oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
 
-            ''Paso 2
-            'Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
-            'cmd1.CommandType = CommandType.Text
-            'cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte) 'INICIO - JB - 31/01/2017
-            'cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
-            'Dim num1 As Integer
-            'cn.Open()
-            'num1 = cmd1.ExecuteNonQuery()
-            'cn.Close()
+            'Paso 2
+            Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
+            cmd1.CommandType = CommandType.Text
+            cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte) 'INICIO - JB - 31/01/2017
+            cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
+            Dim num1 As Integer
+            cn.Open()
+            num1 = cmd1.ExecuteNonQuery()
+            cn.Close()
 
-            ''Paso 3
-            'oHospitalE.IdeHistoria = Session(sIdeHistoria)
-            'oHospitalE.TipoDoc = 11
-            'oHospitalE.IdeGeneral = Session(sIdeHistoria)
-            'oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
-            'FIN 1.0
+            'Paso 3
+            oHospitalE.IdeHistoria = Session(sIdeHistoria)
+            oHospitalE.TipoDoc = 11
+            oHospitalE.IdeGeneral = Session(sIdeHistoria)
+            oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
+
             Return "OK"
         Catch ex As Exception
             Return ex.Message.ToString()
