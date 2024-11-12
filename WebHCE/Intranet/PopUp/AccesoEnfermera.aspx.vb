@@ -1,4 +1,9 @@
-﻿Imports LogicaNegocio.InicioSesionLN
+﻿'----------------------------------------------------------------
+'Version    Fecha		    Autor		REQUERIMIENTO			Comentario
+'1.0        11/11/2024  	GLLUNCOR	REQ 2024-026424			Restringir acceso a los HC Hospital por médico
+'----------------------------------------------------------------
+
+Imports LogicaNegocio.InicioSesionLN
 Imports Entidades.InicioSesionE
 Imports LogicaNegocio.HospitalLN
 Imports Entidades.HospitalE
@@ -86,6 +91,9 @@ Public Class AccesoEnfermera
             oRceInicioSesionE.CodigoUsuario = NombreUsuario.ToUpper().Trim()
             oRceInicioSesionE.Clave = password
             oRceInicioSesionE.Orden = 1
+            '1.0 INI
+            oRceInicioSesionE.IdeHistoria = Session(sIdeHistoria)
+            '1.0 FIN
             tabla = oRceInicioSesionLN.Sp_Usuarios_IniciarSesion2(oRceInicioSesionE)
 
             If tabla.Rows.Count > 0 Then
