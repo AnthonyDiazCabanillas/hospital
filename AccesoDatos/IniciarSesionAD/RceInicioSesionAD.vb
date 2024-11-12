@@ -1,4 +1,8 @@
-﻿Imports System.Data
+﻿'----------------------------------------------------------------
+'Version    Fecha		    Autor		REQUERIMIENTO			Comentario
+'1.0        11/11/2024  	GLLUNCOR	REQ 2024-026424			Restringir acceso a los HC Hospital por médico
+'----------------------------------------------------------------
+Imports System.Data
 Imports System.Data.SqlClient
 Imports System.Configuration
 Imports Entidades.InicioSesionE
@@ -252,7 +256,9 @@ Namespace InicioSesionAD
             cmd.Parameters.AddWithValue("@CodigoUsuario", oRceInicioSesionE.CodigoUsuario)
             cmd.Parameters.AddWithValue("@clave", oRceInicioSesionE.Clave)
             cmd.Parameters.AddWithValue("@orden", oRceInicioSesionE.Orden)
-
+            '1.0 INI
+            cmd.Parameters.AddWithValue("@idhistoria", oRceInicioSesionE.IdeHistoria)
+            '1.0 FIN
             cn.Open()
             Dim tabla As New DataTable()
             Dim da As New SqlDataAdapter(cmd)
