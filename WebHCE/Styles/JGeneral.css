@@ -142,7 +142,16 @@ body {
     visibility:hidden;
 }
 
-  
+/*TEXTO SEGURIDAD - MBARDALES*/
+.JTEXTO-SEGURIDAD {
+    width: 100%;
+    padding: 0.7em;
+    border-radius: 5px;
+    border: 1px solid #4BACFF;
+    outline: none;
+    font-size: 0.8em;
+}
+
 /*TEXTO Y SELECT*/ 
 .JTEXTO, .JSELECT, .JTEXTO-1, .JTEXTO-2, .JTEXTO-3, .JTEXTO-4, .JTEXTO-5, .JTEXTO-6, .JTEXTO-7, .JTEXTO-8, .JTEXTO-9, .JTEXTO-10, .JTEXTO-11, .JTEXTO-12
 {
@@ -251,7 +260,20 @@ input[type="radio"]::after
     padding:5px !important;
 }
 
-
+/*BOTON SEGURIDAD - MBARDALES */
+.JBOTON-SEGURIDAD1 {
+    outline: 0;
+    background: #2074AC;
+    padding: 8px 12px;
+    min-width: 5px;
+    white-space: nowrap;
+    border: none;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 0.7em;
+}
 
 /*ESTILO PARA ACORDEON SIMPLE*/
 .JDIV-ACOR-TITU, .JDIV-ACOR-VALO, JDIV-ACOR-CONTENIDO
@@ -824,4 +846,24 @@ input[type="button"]:disabled:not(.JBOTON-IMAGEN)
 .JSELECT2-DESHABILITADO {
     background-color: lightgray;
     border: 1px solid gray;
+}
+
+.JTEXTINPUTLOGIN {
+    border: 1px solid #4BACFF;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+}
+.JTEXTINPUTLOGIN:focus {
+    border: 1px solid #4BACFF;
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: none; /* Quitar el efecto de sombra */
+    outline: none; /* Asegura que no aparezca el borde azul predeterminado en algunos navegadores */
+}
+.JTEXTOSPANTITLE {
+    text-align: center;
+    color: #8cc53f;
+  
 }

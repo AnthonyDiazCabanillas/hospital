@@ -182,6 +182,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="NotaIngresoAD\RceNotaIngresoAD.vb" />
+    <Compile Include="OtrosAD\Seg_UsuarioPasswordAD.vb" />
     <Compile Include="OtrosAD\TablasAD.vb" />
     <Compile Include="PatologiaAD\RcePatologiaCabAD.vb" />
     <Compile Include="PatologiaAD\RcePatologiaDetAD.vb" />

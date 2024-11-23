@@ -50,6 +50,7 @@ $.JPopUp = function (JTITULO_POPUP, JCUERPO_POPUP, JBOTONES, JTEXTO_BOTONES, JFU
     var aTE_BOTO = new Array();
     if (JTEXTO_BOTONES != undefined) {
         aTE_BOTO = JTEXTO_BOTONES.split(";");
+
     }
 
     var aFU_BOTO = new Array();
@@ -57,9 +58,17 @@ $.JPopUp = function (JTITULO_POPUP, JCUERPO_POPUP, JBOTONES, JTEXTO_BOTONES, JFU
         aFU_BOTO = JFUNCION_BOTONES.split(";");
     }
 
-    for (var i = 0; i < parseInt(JBOTONES == "" ? 0 : JBOTONES); i++) {
-        sDIV_CONTENEDOR_POPUP = sDIV_CONTENEDOR_POPUP +
+    for (var i = 0; i < parseInt(JBOTONES == "" ? 0 : JBOTONES); i++)
+    {       
+        if (aFU_BOTO[i] == "fn_CambiarContraseña()") {
+            sDIV_CONTENEDOR_POPUP = sDIV_CONTENEDOR_POPUP +
+                "<input type='button' id='btn_CambiarContrasenia' value='" + aTE_BOTO[i] + "' onclick='" + aFU_BOTO[i] + "' />";
+
+        }
+        else {
+            sDIV_CONTENEDOR_POPUP = sDIV_CONTENEDOR_POPUP +
                 "<input type='button' value='" + aTE_BOTO[i] + "' onclick='" + aFU_BOTO[i] + "' />";
+        }
     }
 
     sDIV_CONTENEDOR_POPUP = sDIV_CONTENEDOR_POPUP + "</footer>" + "</div>";

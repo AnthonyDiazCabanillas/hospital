@@ -98,13 +98,37 @@
           }
     </style>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#txtPassword").keypress(function (e) {
-                if (e.which == 13) {
-                    fn_IngresarLogin();
+        $(document).ready(function ()
+        {
+            $("#txtPassword").on("input", function () {
+                removeSpaces(this);
+            });
+
+            $("#imgEye1").click(function (e)
+            {
+                if (e.which == 13)
+                {
+                    e.preventDefault();
+                }
+                else
+                {
+
+                    mostrarContrasena(document.getElementById("txtPassword"));
+                    cambiarOjo(this);
+                    e.preventDefault();
                 }
             });
-            $("#txtUsuario").keypress(function (e) {
+
+            $("#txtPassword").keypress(function (e)
+            {
+                if (e.which == 13)
+                {
+                    fn_IngresarLogin();
+                    e.preventDefault();
+                }
+            });
+            $("#txtUsuario").keypress(function (e)
+            {
                 if ($("#rbTipoLoginMedico").prop("checked")) {
                     if ($(this).val().trim().length == 7) {
                         $("#txtPassword").focus();
@@ -222,6 +246,25 @@
 
         });
 
+        function removeSpaces(input) {
+            input.value = input.value.replace(/\s/g, ''); // Elimina todos los espacios
+        }
+
+        function mostrarContrasena(input) {
+            input.type = input.type === "password" ? "text" : "password";
+        }
+
+        function cambiarOjo(pOjo) {
+            const eyeNo = "eye_no.png";
+            const eyeSi = "eye_si.png";
+
+            if (pOjo.src.includes(eyeNo)) {
+                pOjo.src = "../Imagenes/" + eyeSi;
+            } else {
+                pOjo.src = "../Imagenes/" + eyeNo;
+            }
+        }
+
         function SetearFocus() {
             fn_oculta_mensaje();
             $("#txtUsuario").focus();
@@ -333,28 +376,75 @@
 <body>
     <form id="frmAcceso" runat="server" class="JFORM-CONTENEDOR-POPUP">
         <input type="hidden" id="hfInterconsulta" name="hfInterconsulta" runat="server" /> 
+        <div class="JFILA">
+            <div class="JCELDA-12">
+                <div class="JDIV-CONTROLES JTEXTOSPANTITLE">
+                    <h4>Iniciar Sesión RCE(Hospitalización)</h4>
+                </div>
+            </div>
+        </div>
+        <div class="JFILA">
+            <div class="JCELDA-5">
+                <div class="JDIV-CONTROLES" style="text-align:end;">
+                    <img src="../Imagenes/Logo_Login.png" style="width:160px; height:130px;margin-right: 15px;" />
+                </div>
+            </div>
+            <div class="JCELDA-7">
+               <div class="JFILA">
+                   <div class="JCELDA-12">
+                       <div class="JDIV-CONTROLES">
+                           <div style="float:left;overflow:hidden;">
+                               <input type="radio" name="rbTipoLogin" id="rbTipoLoginMedico" checked="checked" /><span class="JETIQUETA">Medico</span>
+                               <input type="radio" name="rbTipoLogin" id="rbTipoLoginAdministrativo" /><span class="JETIQUETA">Asistencial</span>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="JCELDA-12">
+                       <div class="JDIV-CONTROLES">
+                          <span class="JETIQUETA_2" style="float:left;" id="spEtiquetaTipoLogin">DNI</span>
+                       </div>
+                   </div>
+                   <div class="JCELDA-8">
+                       <div class="JDIV-CONTROLES">
+                          <input id="txtUsuario" type="text" class="JTEXTINPUTLOGIN" placeholder="DNI" maxlength="25"  />
+                       </div>
+                   </div>
+                   <div class="JCELDA-12">
+                       <div class="JDIV-CONTROLES">
+                          <span class="JETIQUETA_2" style="float:left;">Contraseña</span>
+                       </div>
+                   </div>
+                   <div class="JCELDA-8">
+                        <div class="JDIV-CONTROLES">
+                            <input id="txtPassword" type="password"  placeholder="Contraseña" maxlength="20" class="JTEXTINPUTLOGIN"  />
+                        </div>                        
+                    </div>
+                    <div class="JCELDA-1">
+                        <div class="JDIV-CONTROLES">
+                            <input type="image" id="imgEye1" src="../Imagenes/eye_no.png" style=" margin-top:5px;width: 1.7em; height: 1.7em;" />
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+        <div class="JFILA">
+            <div class="JCELDA-12">
+                <div class="JDIV-CONTROLES" style="text-align:center; margin-top:5px;">
+                    <a href="#"style="font-size: 11pt; color: #13057c;" id="lnkOlvidoPassword">¿Olvidaste tu Contraseña?</a>
+                    <%--<input type="button" value="Ingresar" id="btnIngresar" />--%>
+                    <input type="hidden" runat="server" id="hfParametro" />
+                </div>
+            </div>
+        </div>
+
+                
+
         <div class="JDIV_FORM_LOGU">
-            <span style="float:left;"><h4>Iniciar Sesión RCE(Hospitalización)</h4></span>
+            <span style="float:left;"></span>
             <div class="JDIV_IMAGEN_LOGIN">
-                <img src="../Imagenes/Logo_Login.png" style="width:140px; height:110px;" />
+                
             </div>
             <div class="JDIV_CONTROLES_LOGIN">
-                <div style="float:left;overflow:hidden;">
-                    <input type="radio" name="rbTipoLogin" id="rbTipoLoginMedico" checked="checked" /><span class="JETIQUETA">Medico</span>
-                    <input type="radio" name="rbTipoLogin" id="rbTipoLoginAdministrativo" /><span class="JETIQUETA">Asistencial</span>
-                </div>
-                <br /><br />
-                <span class="JETIQUETA_2" style="float:left;" id="spEtiquetaTipoLogin">DNI</span>
-                <input id="txtUsuario" type="text" class="JTEXTO" placeholder="DNI" maxlength="25" />
-                <span class="JETIQUETA_2" style="float:left;">Contraseña</span>
-                <input id="txtPassword" type="password" class="JTEXTO" placeholder="Contraseña" maxlength="25"  />
-                <%--<span class="JETIQUETA_2" style="float:left;">Sede</span>
-                <asp:DropDownList runat="server" ID="ddlSede" CssClass="JSELECT">                                                
-                </asp:DropDownList>--%>
-
-                <a href="#" id="lnkOlvidoPassword">¿Olvidaste tu Contraseña?</a>
-                <%--<input type="button" value="Ingresar" id="btnIngresar" />--%>
-                <input type="hidden" runat="server" id="hfParametro" />
             </div>            
         </div>
     </form>

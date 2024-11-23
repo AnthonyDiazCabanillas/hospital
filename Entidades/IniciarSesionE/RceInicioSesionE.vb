@@ -1,4 +1,10 @@
-﻿
+﻿''**************************************************************************************************************************
+''Objetivo General:
+''------------------------------------------------------------
+''VERSIÓN    FECHA			AUTOR       REQUERIMIENTO		DESCRIPCIÓN
+''1.1		 25/09/2024		MBARDALES	REQ 2024-010476		CONFIGURACION DE POLITICA DE CONTRASEÑAS
+''*****************************************************************************************************************************
+
 Namespace InicioSesionE
     Public Class RceInicioSesionE
         Private _DocIdentidad As String = ""
@@ -27,6 +33,37 @@ Namespace InicioSesionE
         Private _DscLog As String
 
         Private _Sede As String
+
+        Private _Ide_Usuario As Integer '1.1 - mbardales - 24/09/2024
+        Private _Txtclave As String = ""
+        Private _TipoSistema As String = ""
+
+        Public Property Ide_Usuario() As Integer
+            Get
+                Return _Ide_Usuario
+            End Get
+            Set(ByVal value As Integer)
+                _Ide_Usuario = value
+            End Set
+        End Property
+
+        Public Property Txtclave() As String
+            Get
+                Return _Txtclave
+            End Get
+            Set(ByVal value As String)
+                _Txtclave = value
+            End Set
+        End Property
+
+        Public Property TipoSistema() As String
+            Get
+                Return _TipoSistema
+            End Get
+            Set(ByVal value As String)
+                _TipoSistema = value
+            End Set
+        End Property
 
         Public Property Sede() As String
             Get

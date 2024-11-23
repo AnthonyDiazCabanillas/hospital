@@ -186,6 +186,19 @@ Namespace InicioSesionAD
             Return oRceInicioSesionE
         End Function
 
+        Public Function Sp_RCEAmbulatorio_ObtenerRutaApiPassword() As DataTable
+            Dim cn As New SqlConnection(CnnBD)
+            Dim cmd As New SqlCommand("Sp_RCEAmbulatorio_ObtenerRutaApiPassword", cn)
+
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            cn.Open()
+            Dim tabla As New DataTable()
+            Dim da As New SqlDataAdapter(cmd)
+            da.Fill(tabla)
+            cn.Close()
+            Return tabla
+        End Function
+
         Public Function Sp_RCESegUsuario_Update(ByVal oRceInicioSesionE As RceInicioSesionE) As RceInicioSesionE
             Dim cn As New SqlConnection(CnnBD)
             Dim cmd As New SqlCommand("Sp_RCESegUsuario_Update", cn)
@@ -197,6 +210,7 @@ Namespace InicioSesionAD
             cmd.Parameters.AddWithValue("@campo", oRceInicioSesionE.Campo)
             cmd.Parameters.AddWithValue("@valor", oRceInicioSesionE.Valor)
             cmd.Parameters.AddWithValue("@clave", oRceInicioSesionE.Clave)
+            cmd.Parameters.AddWithValue("@tipoSistema", oRceInicioSesionE.TipoSistema)
 
             Dim oOutParameter1 As New SqlParameter("@mensaje", SqlDbType.VarChar, 200, ParameterDirection.InputOutput)
             oOutParameter1.ParameterName = "@mensaje"
@@ -269,6 +283,81 @@ Namespace InicioSesionAD
             Return tabla
         End Function
 
+        Public Function sp_seglogclave_sel_clinica(ByVal oRceInicioSesionE As RceInicioSesionE) As DataTable
+            Dim cn As New SqlConnection(CnnBD)
+            Dim cmd As New SqlCommand("sp_seglogclave_sel_clinica", cn)
+
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            'Parametros del Store
+            cmd.Parameters.AddWithValue("@ideusuario", oRceInicioSesionE.Ide_Usuario)
+            cmd.Parameters.AddWithValue("@txtclave", oRceInicioSesionE.Txtclave)
+            cmd.Parameters.AddWithValue("@tipoSistema", oRceInicioSesionE.TipoSistema)
+
+            cn.Open()
+            Dim tabla As New DataTable()
+            Dim da As New SqlDataAdapter(cmd)
+            da.Fill(tabla)
+
+            cn.Close()
+
+            Return tabla
+        End Function
+
+        Public Function Sp_ParamSeguridad_Sel() As DataTable
+            Dim cn As New SqlConnection(CnnBD)
+            Dim cmd As New SqlCommand("Sp_ParamSeguridad_Sel", cn)
+
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            'Parametros del Store
+
+            cn.Open()
+            Dim tabla As New DataTable()
+            Dim da As New SqlDataAdapter(cmd)
+            da.Fill(tabla)
+
+            cn.Close()
+
+            Return tabla
+        End Function
+
+        '1.1 INI
+        Public Function Sp_RCEAmbulatorio_ActualizaSesionBloqueo(ByVal oRceInicioSesionE As RceInicioSesionE) As Boolean
+            Dim cn As New SqlConnection(CnnBD)
+            Dim cmd As New SqlCommand("Sp_RCEAmbulatorio_updatesesionlboqueo", cn)
+
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            'Parametros del Store
+            cmd.Parameters.AddWithValue("@cod_user", oRceInicioSesionE.CodUser)
+            cmd.Parameters.AddWithValue("@cod_medico", oRceInicioSesionE.CodMedico)
+
+            cn.Open()
+            If cmd.ExecuteNonQuery() >= 1 Then
+                Return True
+            Else
+                Return False
+            End If
+            cn.Close()
+        End Function
+        '1.1 FIN
+
+        '1.1 INI
+        Public Function Sp_RCEAmbulatorio_bloqueoAsistencial(ByVal oRceInicioSesionE As RceInicioSesionE) As Boolean
+            Dim cn As New SqlConnection(CnnBD)
+            Dim cmd As New SqlCommand("Sp_RCEAmbulatorio_bloqueoAsistencial", cn)
+
+            cmd.CommandType = System.Data.CommandType.StoredProcedure
+            'Parametros del Store
+            cmd.Parameters.AddWithValue("@ide_usuario", oRceInicioSesionE.Ide_Usuario)
+
+            cn.Open()
+            If cmd.ExecuteNonQuery() >= 1 Then
+                Return True
+            Else
+                Return False
+            End If
+            cn.Close()
+        End Function
+        '1.1 FIN
 
     End Class
 End Namespace
