@@ -1,4 +1,9 @@
-﻿Imports LogicaNegocio.InicioSesionLN
+﻿'----------------------------------------------------------------
+'Version    Fecha		    Autor		REQUERIMIENTO			Comentario
+'1.0        11/11/2024  	GLLUNCOR	REQ 2024-026424			Restringir acceso a los HC Hospital por médico
+'----------------------------------------------------------------
+
+Imports LogicaNegocio.InicioSesionLN
 Imports Entidades.InicioSesionE
 Imports LogicaNegocio.HospitalLN
 Imports Entidades.HospitalE
@@ -86,23 +91,73 @@ Public Class AccesoEnfermera
             oRceInicioSesionE.CodigoUsuario = NombreUsuario.ToUpper().Trim()
             oRceInicioSesionE.Clave = password
             oRceInicioSesionE.Orden = 1
+            '1.0 INI
+            oRceInicioSesionE.IdeHistoria = Session(sIdeHistoria)
+            '1.0 FIN
             tabla = oRceInicioSesionLN.Sp_Usuarios_IniciarSesion2(oRceInicioSesionE)
 
             If tabla.Rows.Count > 0 Then
-                Session(sCodEnfermera) = tabla.Rows(0)("login").ToString().Trim()
-                Session(ScodigoAccesoLogin) = tabla.Rows(0)("login").ToString().Trim()
-                Session(sIdeSesion) = tabla.Rows(0)("ide_sesion").ToString().Trim()
-                Session(sNombreUsuario) = tabla.Rows(0)("nom_usuario").ToString().Trim()
-                Session(sCodMedico) = 0
-                Session(sCodUser) = tabla.Rows(0)("cod_user").ToString().Trim()
-                Session(sCodEspecialidad) = tabla.Rows(0)("cod_especialidad").ToString().Trim()
-                Dim tabla_ As New DataTable()
-                oHospitalE.CodAtencion = Session(sCodigoAtencion)
-                tabla_ = oHospitalLN.Sp_RceHistoriaClinica_Consulta(oHospitalE)
-                Session(sIdeHistoria) = CType(tabla_.Rows(0)("ide_historia").ToString().Trim(), Integer)
+                Dim _num_intentos As Integer
+                _num_intentos = Convert.ToInt32(tabla.Rows(0)("num_intentos").ToString().Trim())
 
-                Session(sPerfilUsuario) = tabla.Rows(0)("txt_perfil").ToString().Trim()
-                Return ""
+                If Trim(tabla.Rows(0)("ide_sesion").ToString().Trim()) <> "" Then
+                    Session(sCodEnfermera) = tabla.Rows(0)("login").ToString().Trim()
+                    Session(ScodigoAccesoLogin) = tabla.Rows(0)("login").ToString().Trim()
+                    Session(sIdeSesion) = tabla.Rows(0)("ide_sesion").ToString().Trim()
+                    Session(sNombreUsuario) = tabla.Rows(0)("nom_usuario").ToString().Trim()
+                    Session(sCodMedico) = 0
+                    Session(sCodUser) = tabla.Rows(0)("cod_user").ToString().Trim()
+                    Session(sCodEspecialidad) = tabla.Rows(0)("cod_especialidad").ToString().Trim()
+                    Dim tabla_ As New DataTable()
+                    oHospitalE.CodAtencion = Session(sCodigoAtencion)
+                    tabla_ = oHospitalLN.Sp_RceHistoriaClinica_Consulta(oHospitalE)
+                    Session(sIdeHistoria) = CType(tabla_.Rows(0)("ide_historia").ToString().Trim(), Integer)
+
+                    Session(sPerfilUsuario) = tabla.Rows(0)("txt_perfil").ToString().Trim()
+
+                    Session(sClave) = password
+
+                    If (CDate(tabla.Rows(0)("fec_expira").ToString().Trim()) <= Now.ToLongDateString) Then
+                        Session(sCambioClave) = "1"
+                    Else
+                        Session(sCambioClave) = "0"
+                    End If
+
+                    Return ""
+                Else
+
+                    If (tabla.Rows(0)("mensaje").ToString().Trim() = "La contraseña es incorrecta") Then
+                        If (String.IsNullOrWhiteSpace(Session("ContadorSesion"))) Then
+
+
+
+                            Session("ContadorSesion") = "1"
+
+                        Else
+
+
+                            Session("ContadorSesion") = Integer.Parse(Session("ContadorSesion").ToString()) + 1
+                        End If
+
+                        Dim _count As Integer = Integer.Parse(Session("ContadorSesion").ToString())
+
+                        If (_count < _num_intentos) Then
+                            Return "Intento N° " + _count.ToString() + ", su perfil se bloquerá al tercer intento"
+                        Else
+                            Dim valor As Boolean
+                            oRceInicioSesionE.Ide_Usuario = tabla.Rows(0)("ide_usuario").ToString().Trim()
+                            valor = oRceInicioSesionLN.Sp_RCEAmbulatorio_bloqueoAsistencial(oRceInicioSesionE)
+                            If (valor = True) Then
+                                Session.Remove("ContadorSesion")
+
+                                Return "Ha excedido el número de intentos, su perfil fue bloqueado"
+                            End If
+                        End If
+                    Else
+                        Return tabla.Rows(0)("mensaje").ToString().Trim()
+                    End If
+                End If
+
             Else
                 Return "Usuario o Clave incorrecta"
             End If

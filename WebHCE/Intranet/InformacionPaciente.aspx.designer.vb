@@ -23,6 +23,15 @@ Partial Public Class InformacionPaciente
     Protected WithEvents divUsuarioConexion As Global.System.Web.UI.HtmlControls.HtmlGenericControl
 
     '''<summary>
+    '''Control divAvisoContrasenia.
+    '''</summary>
+    '''<remarks>
+    '''Campo generado automáticamente.
+    '''Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+    '''</remarks>
+    Protected WithEvents divAvisoContrasenia As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+
+    '''<summary>
     '''Control divContenedorDinamico.
     '''</summary>
     '''<remarks>

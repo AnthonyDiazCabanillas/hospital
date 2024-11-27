@@ -5,6 +5,8 @@
 '    1.1      02/02/2024  CRODRIGUEZ  REQ 2023-021287 Se envia correo al agregar o cambiar dieta del paciente 
 '    1.2      29/04/2024  GLluncor    REQ 2024-008691 - Actualizar URL ROE
 '    1.3      19/06/2024  FGUEVARA    REQ-2024-011009 RESULTADOS ROE - HC
+'    1.4      31/10/2024  CRODRIGUEZ  REQ 2024-023820 Informe repetido en SIC
+'    1.5      17/11/2024  FCHUJE      REQ 2024-010476 CONFIGURACION DE POLITICA DE CONTRASEÑAS_v2
 '****************************************************************************************
 Imports System.Data
 Imports System.IO
@@ -105,7 +107,7 @@ Public Class InformacionPaciente
     Dim ListIndicacionesMedicastabdetallexproducto As List(Of IndicacionesMedicaDetalleE)
     Dim _listEscala As List(Of EscalaEIndicacionesE)
     Dim _Encript As Criptography = New Criptography()
-
+    Dim seg_UsuarioPassword As Seg_UsuarioPassword = New Seg_UsuarioPassword()
 
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -120,7 +122,10 @@ Public Class InformacionPaciente
             Session.Remove(sIdeRecetaImagenCab)
 
             ObtenerValoresGenerales()
+            Dim codmedicovalida As String = Session(sCodMedico)
+            Dim coduservalida As String = Session(sCodUser)
             divUsuarioConexion.InnerHtml = "Usuario: " + Session(sNombreUsuario)
+            ObtenerValidacionPassword(codmedicovalida, coduservalida)  '[1.5]
             CargaDatoViaAdministracion()
             ListarInfusiones()
             CargarPatologiasCheck()
@@ -152,9 +157,25 @@ Public Class InformacionPaciente
             'End If
 
             hfAdministrativo.Value = Session(sPerfilUsuario)
+
+            If (Session(sCambioClave) = "1" And hfAdministrativo.Value <> "ADMINISTRATIVOS") Then
+                ScriptManager.RegisterStartupScript(Me, Me.Page.GetType, "myFuncionAlerta", "CambiarPasswordObligatorio();", True)
+            End If
+
         End If
     End Sub
-
+    Public Sub ObtenerValidacionPassword(ByVal codmedico As String, ByVal coduser As String)
+        '[1.5]
+        Try
+            Dim tabla As New DataTable()
+            tabla = seg_UsuarioPassword.usp_seg_usuario_password_cambio_tmp_validar(codmedico, coduser)
+            Session(sCambioClave) = tabla.Rows(0)("cambio").ToString()
+            divAvisoContrasenia.InnerHtml = tabla.Rows(0)("mensaje").ToString()
+        Catch ex As Exception
+            Session(sCambioClave) = "0"
+            divAvisoContrasenia.InnerHtml = ""
+        End Try
+    End Sub
     Public Sub GuardarAntecedentes()
         Try
             Dim tabla As New DataTable()
@@ -2373,38 +2394,38 @@ Public Class InformacionPaciente
                 End If
             End If
 
+            'INI 1.4
+            ''INICIO - JB - 31/01/2017
+            'Dim pdf_byte As Byte() = ExportaPDF("DA")
+            ''INICIO - JB - 31/01/2017
 
-            'INICIO - JB - 31/01/2017
-            Dim pdf_byte As Byte() = ExportaPDF("DA")
-            'INICIO - JB - 31/01/2017
+            'Dim cn As New SqlConnection(CnnBD)
 
-            Dim cn As New SqlConnection(CnnBD)
+            ''Paso 1
+            'oHospitalE.TipoDoc = 10
+            'oHospitalE.CodAtencion = Session(sCodigoAtencion)
+            'oHospitalE.CodUser = Session(sCodUser)
+            'oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
+            'oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
 
-            'Paso 1
-            oHospitalE.TipoDoc = 10
-            oHospitalE.CodAtencion = Session(sCodigoAtencion)
-            oHospitalE.CodUser = Session(sCodUser)
-            oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
-            oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
+            ''Paso 2
+            'Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
+            'cmd1.CommandType = CommandType.Text
+            'cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
+            'cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
+            'cmd1.Parameters.AddWithValue("@flg_reqfirma", RequiereFirma)
 
-            'Paso 2
-            Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
-            cmd1.CommandType = CommandType.Text
-            cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
-            cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
-            cmd1.Parameters.AddWithValue("@flg_reqfirma", RequiereFirma)
+            'Dim num1 As Integer
+            'cn.Open()
+            'num1 = cmd1.ExecuteNonQuery()
+            'cn.Close()
 
-            Dim num1 As Integer
-            cn.Open()
-            num1 = cmd1.ExecuteNonQuery()
-            cn.Close()
-
-            'Paso 3
-            oHospitalE.IdeHistoria = Session(sIdeHistoria)
-            oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
-            oHospitalE.TipoDoc = 10
-            oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
-
+            ''Paso 3
+            'oHospitalE.IdeHistoria = Session(sIdeHistoria)
+            'oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
+            'oHospitalE.TipoDoc = 10
+            'oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
+            'FIN 1.4
 
             Return ConsultarEvolucionClinica_()
         Catch ex As Exception
@@ -4034,35 +4055,36 @@ Public Class InformacionPaciente
         oRceEvolucionE.Orden = 2
         oRceEvolucionLN.Sp_RceEvolucionLog_Insert(oRceEvolucionE)
         If oRceEvolucionE.CodigoEvolucion <> 0 Then
+            'INI 1.4
+            ''INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            'Dim pdf_byte As Byte() = ExportaPDF("DA")
+            'Dim cn As New SqlConnection(CnnBD)
+            ''Paso 1
+            'oHospitalE.TipoDoc = 10
+            'oHospitalE.CodAtencion = Session(sCodigoAtencion)
+            'oHospitalE.CodUser = Session(sCodUser)
+            'oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
+            'oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
 
-            'INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
-            Dim pdf_byte As Byte() = ExportaPDF("DA")
-            Dim cn As New SqlConnection(CnnBD)
-            'Paso 1
-            oHospitalE.TipoDoc = 10
-            oHospitalE.CodAtencion = Session(sCodigoAtencion)
-            oHospitalE.CodUser = Session(sCodUser)
-            oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
-            oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
+            ''Paso 2
+            'Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
+            'cmd1.CommandType = CommandType.Text
+            'cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
+            'cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
+            'cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
 
-            'Paso 2
-            Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
-            cmd1.CommandType = CommandType.Text
-            cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
-            cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
-            cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
+            'Dim num1 As Integer
+            'cn.Open()
+            'num1 = cmd1.ExecuteNonQuery()
+            'cn.Close()
 
-            Dim num1 As Integer
-            cn.Open()
-            num1 = cmd1.ExecuteNonQuery()
-            cn.Close()
-
-            'Paso 3
-            oHospitalE.IdeHistoria = Session(sIdeHistoria)
-            oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
-            oHospitalE.TipoDoc = 10
-            oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
-            'FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            ''Paso 3
+            'oHospitalE.IdeHistoria = Session(sIdeHistoria)
+            'oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
+            'oHospitalE.TipoDoc = 10
+            'oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
+            ''FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            'FIN 1.4
         Else
             Return ConfigurationManager.AppSettings(sMensajeGuardarError) + " - Sp_RceEvolucionLog_Insert"
         End If
@@ -4694,34 +4716,36 @@ Public Class InformacionPaciente
                         oRceEvolucionLN.Sp_RceEvolucionLog_Insert(oRceEvolucionE)
 
                         If oRceEvolucionE.CodigoEvolucion <> 0 Then
-                            'INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
-                            Dim pdf_byte As Byte() = ExportaPDF("DA")
-                            Dim cn As New SqlConnection(CnnBD)
-                            'Paso 1
-                            oHospitalE.TipoDoc = 10
-                            oHospitalE.CodAtencion = Session(sCodigoAtencion)
-                            oHospitalE.CodUser = Session(sCodUser)
-                            oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
-                            oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
+                            'INI 1.4
+                            ''INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+                            'Dim pdf_byte As Byte() = ExportaPDF("DA")
+                            'Dim cn As New SqlConnection(CnnBD)
+                            ''Paso 1
+                            'oHospitalE.TipoDoc = 10
+                            'oHospitalE.CodAtencion = Session(sCodigoAtencion)
+                            'oHospitalE.CodUser = Session(sCodUser)
+                            'oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
+                            'oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
 
-                            'Paso 2
-                            Dim cmd2 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
-                            cmd2.CommandType = CommandType.Text
-                            cmd2.Parameters.AddWithValue("@bib_documento", pdf_byte)
-                            cmd2.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
-                            cmd2.Parameters.AddWithValue("@flg_reqfirma", "0")
+                            ''Paso 2
+                            'Dim cmd2 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
+                            'cmd2.CommandType = CommandType.Text
+                            'cmd2.Parameters.AddWithValue("@bib_documento", pdf_byte)
+                            'cmd2.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
+                            'cmd2.Parameters.AddWithValue("@flg_reqfirma", "0")
 
-                            Dim num1 As Integer
-                            cn.Open()
-                            num1 = cmd2.ExecuteNonQuery()
-                            cn.Close()
+                            'Dim num1 As Integer
+                            'cn.Open()
+                            'num1 = cmd2.ExecuteNonQuery()
+                            'cn.Close()
 
-                            'Paso 3
-                            oHospitalE.IdeHistoria = Session(sIdeHistoria)
-                            oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
-                            oHospitalE.TipoDoc = 10
-                            oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
-                            'FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+                            ''Paso 3
+                            'oHospitalE.IdeHistoria = Session(sIdeHistoria)
+                            'oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
+                            'oHospitalE.TipoDoc = 10
+                            'oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
+                            ''FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+                            'FIN 1.4
                         Else
                             Return ConfigurationManager.AppSettings(sMensajeGuardarError) + " - Sp_RceEvolucionLog_Insert"
                         End If
@@ -6069,34 +6093,36 @@ Public Class InformacionPaciente
             'FIN - JB - ENVIAR CORREO
 
             If oRceEvolucionE.CodigoEvolucion <> 0 Then
-                'INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
-                Dim pdf_byte As Byte() = ExportaPDF("DA")
-                Dim cn As New SqlConnection(CnnBD)
-                'Paso 1
-                oHospitalE.TipoDoc = 10
-                oHospitalE.CodAtencion = Session(sCodigoAtencion)
-                oHospitalE.CodUser = Session(sCodUser)
-                oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
-                oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
+                'INI 1.4
+                ''INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+                'Dim pdf_byte As Byte() = ExportaPDF("DA")
+                'Dim cn As New SqlConnection(CnnBD)
+                ''Paso 1
+                'oHospitalE.TipoDoc = 10
+                'oHospitalE.CodAtencion = Session(sCodigoAtencion)
+                'oHospitalE.CodUser = Session(sCodUser)
+                'oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
+                'oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
 
-                'Paso 2
-                Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
-                cmd1.CommandType = CommandType.Text
-                cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
-                cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
-                cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
+                ''Paso 2
+                'Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
+                'cmd1.CommandType = CommandType.Text
+                'cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
+                'cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
+                'cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
 
-                Dim num1 As Integer
-                cn.Open()
-                num1 = cmd1.ExecuteNonQuery()
-                cn.Close()
+                'Dim num1 As Integer
+                'cn.Open()
+                'num1 = cmd1.ExecuteNonQuery()
+                'cn.Close()
 
-                'Paso 3
-                oHospitalE.IdeHistoria = Session(sIdeHistoria)
-                oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
-                oHospitalE.TipoDoc = 10
-                oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
-                'FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+                ''Paso 3
+                'oHospitalE.IdeHistoria = Session(sIdeHistoria)
+                'oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
+                'oHospitalE.TipoDoc = 10
+                'oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
+                ''FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+                'FIN 1.4
             Else
                 Return ConfigurationManager.AppSettings(sMensajeGuardarError) + " - Sp_RceEvolucionLog_Insert"
             End If
@@ -9048,35 +9074,36 @@ Public Class InformacionPaciente
         oRceEvolucionE.Orden = Orden
         oRceEvolucionLN.Sp_RceEvolucionLog_Insert(oRceEvolucionE)
         If oRceEvolucionE.CodigoEvolucion <> 0 Then
+            'INI 1.4
+            ''INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            'Dim pdf_byte As Byte() = ExportaPDF("DA")
+            'Dim cn As New SqlConnection(CnnBD)
+            ''Paso 1
+            'oHospitalE.TipoDoc = 10
+            'oHospitalE.CodAtencion = Session(sCodigoAtencion)
+            'oHospitalE.CodUser = Session(sCodUser)
+            'oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
+            'oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
 
-            'INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
-            Dim pdf_byte As Byte() = ExportaPDF("DA")
-            Dim cn As New SqlConnection(CnnBD)
-            'Paso 1
-            oHospitalE.TipoDoc = 10
-            oHospitalE.CodAtencion = Session(sCodigoAtencion)
-            oHospitalE.CodUser = Session(sCodUser)
-            oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
-            oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
+            ''Paso 2
+            'Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
+            'cmd1.CommandType = CommandType.Text
+            'cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
+            'cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
+            'cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
 
-            'Paso 2
-            Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
-            cmd1.CommandType = CommandType.Text
-            cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
-            cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
-            cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
+            'Dim num1 As Integer
+            'cn.Open()
+            'num1 = cmd1.ExecuteNonQuery()
+            'cn.Close()
 
-            Dim num1 As Integer
-            cn.Open()
-            num1 = cmd1.ExecuteNonQuery()
-            cn.Close()
-
-            'Paso 3
-            oHospitalE.IdeHistoria = Session(sIdeHistoria)
-            oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
-            oHospitalE.TipoDoc = 10
-            oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
-            'FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            ''Paso 3
+            'oHospitalE.IdeHistoria = Session(sIdeHistoria)
+            'oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
+            'oHospitalE.TipoDoc = 10
+            'oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
+            ''FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            'FIN 1.4
         Else
             Return ConfigurationManager.AppSettings(sMensajeGuardarError) + " - Sp_RceEvolucionLog_Insert"
         End If
@@ -9089,36 +9116,38 @@ Public Class InformacionPaciente
         oRceEvolucionE.Orden = Orden
         oRceEvolucionE.CodMedico = Session(sCodMedico)
         oRceEvolucionLN.Sp_RceEvolucionLog_InsertV2(oRceEvolucionE)
+
         If oRceEvolucionE.CodigoEvolucion <> 0 Then
+            '1.4 INI
+            '    'INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            '    Dim pdf_byte As Byte() = ExportaPDF("DA")
+            '    Dim cn As New SqlConnection(CnnBD)
+            '    'Paso 1
+            '    oHospitalE.TipoDoc = 10
+            '    oHospitalE.CodAtencion = Session(sCodigoAtencion)
+            '    oHospitalE.CodUser = Session(sCodUser)
+            '    oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
+            '    oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
 
-            'INICIO - JB - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
-            Dim pdf_byte As Byte() = ExportaPDF("DA")
-            Dim cn As New SqlConnection(CnnBD)
-            'Paso 1
-            oHospitalE.TipoDoc = 10
-            oHospitalE.CodAtencion = Session(sCodigoAtencion)
-            oHospitalE.CodUser = Session(sCodUser)
-            oHospitalE.Descripcion = oRceEvolucionE.CodigoEvolucion.ToString()
-            oHospitalLN.Sp_HospitalDoc_Insert(oHospitalE)
+            '    'Paso 2
+            '    Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
+            '    cmd1.CommandType = CommandType.Text
+            '    cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
+            '    cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
+            '    cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
 
-            'Paso 2
-            Dim cmd1 As New SqlCommand("update hospital_doc set bib_documento=@bib_documento,flg_reqfirma=@flg_reqfirma, extension_doc='PDF',flg_firma=NULL, fec_firma=NULL, usr_firma=NULL  where id_documento=@id_documento", cn)
-            cmd1.CommandType = CommandType.Text
-            cmd1.Parameters.AddWithValue("@bib_documento", pdf_byte)
-            cmd1.Parameters.AddWithValue("@id_documento", oHospitalE.IdDocumento)
-            cmd1.Parameters.AddWithValue("@flg_reqfirma", "0")
+            '    Dim num1 As Integer
+            '    cn.Open()
+            '    num1 = cmd1.ExecuteNonQuery()
+            '    cn.Close()
 
-            Dim num1 As Integer
-            cn.Open()
-            num1 = cmd1.ExecuteNonQuery()
-            cn.Close()
-
-            'Paso 3
-            oHospitalE.IdeHistoria = Session(sIdeHistoria)
-            oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
-            oHospitalE.TipoDoc = 10
-            oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
-            'FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            '    'Paso 3
+            '    oHospitalE.IdeHistoria = Session(sIdeHistoria)
+            '    oHospitalE.IdeGeneral = oRceEvolucionE.CodigoEvolucion
+            '    oHospitalE.TipoDoc = 10
+            '    oHospitalLN.Sp_RceHospitalDoc_Insert(oHospitalE)
+            '    'FIN - NUEVO CODIGO - 07/02/2020 - PARA EVOLUCION CLINICA
+            '1.4 FIN
         Else
             Return ConfigurationManager.AppSettings(sMensajeGuardarError) + " - Sp_RceEvolucionLog_Insert"
         End If

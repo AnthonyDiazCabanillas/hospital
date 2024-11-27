@@ -17,6 +17,17 @@
     font-size: 11px;
 }
 
+.JSBTABLA-SEGURIDAD {
+    background: White; /*344657 -CLINICA*/
+    border-collapse: collapse !important; /*separate !important  23/08/2016*/
+    border: 1px solid #8DC73F;
+    border-radius: 10px;
+    /*overflow: hidden; - CLINICA*/
+    width: 100%;
+    /*box-shadow: 0 0 10px #8DC73F; 23/08/2016*/
+    font-size: 11px;
+}
+
 .JSBTABLA tr:hover td
 {
     background-color: #134B8D; /*#E8E8E8 - GRIS*/

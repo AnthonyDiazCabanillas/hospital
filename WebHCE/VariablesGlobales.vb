@@ -23,7 +23,9 @@
     Public Const sSede = "Sede"
     Public Const sTablaInfusiones = "TablaInfusiones"
     Public Const sCodEspecialidad = "CodEspecialidad"
+    Public Const sClave = "Clave"
     Public Const Ide_usuario = "Ide_usuario"
+    Public Const sCambioClave = "CambioClave"
 
     'Variables para mensajes de guardar, actualizar y eliminar
     Public Const sMensajeGuardarError = "MENSAJE_GUARDAR_ERROR"
