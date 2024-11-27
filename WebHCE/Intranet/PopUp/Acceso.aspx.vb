@@ -108,7 +108,11 @@ Public Class Acceso
             End If
 
             If tabla.Rows.Count > 0 Then
+                Dim _num_intentos As Integer
+                _num_intentos = Convert.ToInt32(tabla.Rows(0)("num_intentos").ToString().Trim())
+
                 If Trim(tabla.Rows(0)("ide_sesion").ToString().Trim()) <> "" Then
+                    Session.Remove("ContadorSesion") '1.1
                     'INICIO - JB - 24/06/2020 - SE COMENTA ESTE CODIGO
                     'Session(sIdeSesion) = tabla.Rows(0)("ide_sesion").ToString().Trim()
 
@@ -131,6 +135,10 @@ Public Class Acceso
                     Session(sDscPcName) = nom_cliente
                     Session(sPerfilUsuario) = tabla.Rows(0)("txt_perfil").ToString().Trim()
                     Session(sCodEspecialidad) = tabla.Rows(0)("cod_especialidad").ToString().Trim()
+                    Session(sClave) = password
+
+                    Session(sCambioClave) = "0"
+
 
                     Dim oHospitalLN As New HospitalLN
                     Dim oHospitalE As New HospitalE
@@ -156,7 +164,32 @@ Public Class Acceso
                     Return ""
                     'FIN - JB - 24/06/2020 - NUEVO CODIGO
                 Else
-                    Return tabla.Rows(0)("mensaje").ToString().Trim()
+                    If (tabla.Rows(0)("mensaje").ToString().Trim() = "La contraseña es incorrecta") Then
+                        If (String.IsNullOrWhiteSpace(Session("ContadorSesion"))) Then
+                            Session("ContadorSesion") = "1"
+                        Else
+                            Session("ContadorSesion") = Integer.Parse(Session("ContadorSesion").ToString()) + 1
+                        End If
+
+                        Dim _count As Integer = Integer.Parse(Session("ContadorSesion").ToString())
+
+                        If (_count < _num_intentos) Then
+                            Return "Intento N° " + _count.ToString() + ", su perfil se bloquerá al intento N° " + _num_intentos.ToString()
+                        Else
+                            Dim valor As Boolean
+                            oRceInicioSesionE.CodMedico = tabla.Rows(0)("cod_medico").ToString().Trim()
+                            oRceInicioSesionE.CodUser = tabla.Rows(0)("cod_user").ToString().Trim()
+                            valor = oRceInicioSesionLN.Sp_RCEAmbulatorio_ActualizaSesionBloqueo(oRceInicioSesionE)
+                            If (valor = True) Then
+                                Session.Remove("ContadorSesion")
+
+                                Return "Ha excedido el número de intentos, su perfil fue bloqueado"
+                            End If
+                        End If
+                    Else
+                        Return tabla.Rows(0)("mensaje").ToString().Trim()
+                    End If
+
                 End If
             Else
                 Return "El usuario no existe"

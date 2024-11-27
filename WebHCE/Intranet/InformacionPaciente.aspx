@@ -76,6 +76,9 @@
     var gridViewInfusiones = "";
     var rowInfusiones = "";
 
+    function CambiarPasswordObligatorio() {
+        $.JPopUp("Cambiar Contraseña", "PopUp/CambiarPassword.aspx", "2", "Cambiar Contraseña;Salir", "fn_CambiarContraseña();fn_cierra_sistema()", 40, "");
+    }
 
     function CierraVentanaM() {
         $.ajax({
@@ -7605,6 +7608,7 @@
             <div style="float:right;margin-right:10px;cursor:pointer;" id="divCierraSesion"> -  Cerrar Sesion</div>
             <div style="float:right;margin-right:10px;cursor:pointer;" id="divCambiarPassword"> -  Cambiar Contraseña</div>
             <div runat="server" id="divUsuarioConexion" style="float:right;margin-right:5px;"></div>
+            <div runat="server" id="divAvisoContrasenia" style="float:right;margin-right:10px; font-weight:bold; color:darkred;"></div>
         </div>
         <%--12/09/2016--%>
         <div class="JFILA" style="position:absolute;top:40px;right:1%;float:right;width:75%;">
@@ -10480,8 +10484,10 @@
         document.getElementById("fechaInicioEscalaEIntervencionesenfermeria").setAttribute("max", date);
         document.getElementById("fechaFINEscalaEIntervencionesenfermeria").value = date;
         document.getElementById("fechaFINEscalaEIntervencionesenfermeria").setAttribute("max", date);
-        $("#tabescalaeintervenciones1").attr('checked', true);
-        document.getElementById("tabescalaeintervenciones1").checked = true;
+        try {
+            $("#tabescalaeintervenciones1").attr('checked', true);
+            document.getElementById("tabescalaeintervenciones1").checked = true;
+        } catch { }
     </script>
     <script>
         /*Script para el Kardex*/
