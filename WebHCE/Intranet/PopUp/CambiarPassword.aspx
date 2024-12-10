@@ -866,7 +866,7 @@
             </div>
             <div class="JCELDA-6">
                 <div class="JDIV-CONTROLES">
-                    <input type="password" class="JTEXTO-SEGURIDAD" id="txtNuevoPassword" maxlength="20"/>
+                    <input type="password" class="JTEXTO-SEGURIDAD" id="txtNuevoPassword" maxlength="15"/>
                 </div>
             </div>
 
@@ -891,7 +891,7 @@
             </div>
             <div class="JCELDA-6">
                 <div class="JDIV-CONTROLES">
-                    <input type="password" class="JTEXTO-SEGURIDAD" id="txtRepetirPassword" maxlength="20"/>
+                    <input type="password" class="JTEXTO-SEGURIDAD" id="txtRepetirPassword" maxlength="15"/>
                 </div>
             </div>
 
