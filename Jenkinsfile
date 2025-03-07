@@ -27,25 +27,28 @@ pipeline {
         }
         
         stage('Deploy') {
-            steps {
+             steps {
                 script {
                     echo 'Deploying projects...'
+                    def sourceDir = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital"
                     def destinationDir = "D:\\DigitalizacionHC\\PruebaHospital"
+
+                    // Crear la carpeta de destino si no existe
                     bat """
                         if not exist "${destinationDir}" (
-                        mkdir "${destinationDir}"
+                            mkdir "${destinationDir}"
                         )
                     """
 
-                    // Ejemplo: Copiar archivos a un servidor remoto usando SCP
+                    // Copiar todos los archivos desde la carpeta de origen a la de destino
                     bat """
-                        if exist "${PUBLISH_DIR}" (
-                                    robocopy "${PUBLISH_DIR}" "${destinationDir}" /E                        
-                        )
+                        robocopy "${sourceDir}" "${destinationDir}" /E /COPYALL /R:3 /W:5
                     """
+
                     echo 'Projects deployed.'
                 }
             }
+        
         }
 
 
