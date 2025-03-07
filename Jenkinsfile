@@ -67,7 +67,7 @@ pipeline {
 
     environment {
         // Especifica la versión de Node.js
-        NODE_VERSION = '18'
+        NODE_VERSION = '22.14'
     }
 
     stages {
