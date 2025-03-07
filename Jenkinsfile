@@ -1,4 +1,4 @@
-/*pipeline {
+pipeline {
     agent any
 
     environment {
@@ -61,7 +61,7 @@
         }
     }
 } 
-*/
+/*
 pipeline {
     agent any
 
@@ -132,4 +132,4 @@ pipeline {
             echo 'Error en el despliegue.'
         }
     }
-}
+}*/
