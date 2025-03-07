@@ -32,6 +32,7 @@ pipeline {
                     echo 'Deploying projects...'
                     def sourceDir = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital"
                     def destinationDir = "D:\\DigitalizacionHC\\PruebaHospital"
+                    def logFile = "${env.WORKSPACE}\\robocopy.log" // Archivo de log en el workspace de Jenkins
 
                     // Crear la carpeta de destino si no existe
                     bat """
@@ -42,7 +43,7 @@ pipeline {
 
                     // Copiar todos los archivos desde la carpeta de origen a la de destino
                     bat """
-                        robocopy "${sourceDir}" "${destinationDir}" /MIR /COPYALL /R:3 /W:5
+                        robocopy "${sourceDir}" "${destinationDir}" /MIR /COPYALL /R:3 /W:5 /LOG:"${logFile}" /NP /TEE
                     """
 
                     echo 'Projects deployed.'
