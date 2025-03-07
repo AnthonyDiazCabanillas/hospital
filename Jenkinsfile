@@ -1,4 +1,4 @@
-pipeline {
+/*pipeline {
     agent any
 
     environment {
@@ -61,46 +61,64 @@ pipeline {
         }
     }
 } 
-
-/*pipeline {
+*/
+pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS' // Usa el nombre que configuraste en "Global Tool Configuration"
+    environment {
+        // Especifica la versión de Node.js
+        NODE_VERSION = '18'
     }
 
     stages {
-        stage('Clonar repositorio') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/AnthonyDiazCabanillas/hospital.git'
+                // Clona el repositorio
+                git url: 'https://github.com/AnthonyDiazCabanillas/hospital.git', branch: 'main'
             }
         }
 
-        stage('Instalar dependencias') {
+        stage('Setup Node.js') {
             steps {
+                // Instala la versión especificada de Node.js
+                nvmInstall nodeVersion: env.NODE_VERSION
+                sh 'node --version'
+                sh 'npm --version'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                // Instala las dependencias del proyecto
                 sh 'npm install'
             }
         }
 
-        stage('Ejecutar pruebas') {
+        stage('Build') {
             steps {
-                sh 'npm test'
+                // Compila el proyecto
+                sh 'npm run build'
             }
         }
 
-        stage('Construir proyecto') {
+        stage('Deploy') {
             steps {
-                sh 'npm run build'
+                // Aquí puedes agregar los pasos para desplegar la aplicación
+                // Por ejemplo, copiar los archivos a un servidor web o subirlos a un bucket de S3
+                sh 'echo "Desplegando la aplicación..."'
+                sh 'cp -r build/* /var/www/html/' // Ejemplo para un servidor web
             }
         }
     }
 
     post {
         success {
-            echo '¡Pipeline ejecutado con éxito!'
+            // Notificación en caso de éxito
+            echo '¡Despliegue exitoso!'
         }
         failure {
-            echo 'Pipeline falló. Revisa los logs para más detalles.'
+            // Notificación en caso de fallo
+            echo 'Error en el despliegue.'
         }
     }
-}*/
+}
