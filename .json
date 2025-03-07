@@ -1,0 +1,39 @@
+{
+    "name": "hospital-app",
+    "version": "1.0.0",
+    "description": "Aplicación web de gestión hospitalaria",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "dev": "nodemon index.js",
+      "test": "jest",
+      "build": "webpack --config webpack.config.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "body-parser": "^1.19.0",
+      "cors": "^2.8.5",
+      "dotenv": "^10.0.0",
+      "mongoose": "^6.0.12",
+      "jsonwebtoken": "^8.5.1"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.7",
+      "jest": "^27.0.6",
+      "webpack": "^5.51.1",
+      "webpack-cli": "^4.8.0",
+      "eslint": "^7.32.0"
+    },
+    "author": "Anthony Díaz Cabanillas",
+    "license": "MIT",
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/AnthonyDiazCabanillas/hospital.git"
+    },
+    "keywords": [
+      "hospital",
+      "express",
+      "nodejs",
+      "api"
+    ]
+  }
