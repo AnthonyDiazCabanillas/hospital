@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh 'npm run build' // Ejecuta el script de construcción
             }
-        }
+        
         
         stage('Deploy') {
             steps {
