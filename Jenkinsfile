@@ -41,11 +41,9 @@ pipeline {
                     """
 
                     // Copiar todos los archivos desde la carpeta de origen a la de destino
-                    bat  
-                    robocopy "C:\ProgramData\Jenkins\.jenkins\workspace\Hospital" "D:\DigitalizacionHC\PruebaHospital" /E /COPYALL /MIR /R:1 /W:1 /LOG:"D:\robocopy_log.txt"
-                    /* """
+                    bat  """
                         robocopy "${sourceDir}" "${destinationDir}" /E /COPYALL /R:3 /W:5
-                    """ */
+                    """
 
                     echo 'Projects deployed.'
                 }
