@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     echo 'Deploying projects...'
-                    def destinationDir = "D:\\DigitalizacionHC\\Prueba"
+                    def destinationDir = "D:\\DigitalizacionHC\\PruebaHospital"
                     bat """
                         if not exist "${destinationDir}" (
                         mkdir "${destinationDir}"
