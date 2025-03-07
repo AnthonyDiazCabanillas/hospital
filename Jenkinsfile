@@ -34,16 +34,23 @@ pipeline {
 
         stage('Desplegar') {
             steps {
-                // Ejemplo de despliegue en un servidor remoto usando SSH
-                sh '''
-                    ssh usuario@servidor-remoto '
-                        cd /ruta/al/proyecto &&
-                        git pull origin main &&
-                        npm install --production &&
-                        pm2 restart hospital-app
-                    '
-                '''
-                // Nota: Ajusta el comando SSH según tu entorno de despliegue.
+                script {
+                    echo 'Deploying projects...'
+                    def destinationDir = "D:\\DigitalizacionHC\\PruebaHospital"
+                    bat """
+                        if not exist "${destinationDir}" (
+                        mkdir "${destinationDir}"
+                        )
+                    """
+
+                    // Ejemplo: Copiar archivos a un servidor remoto usando SCP
+                    bat """
+                        if exist "${PUBLISH_DIR}" (
+                                    robocopy "${PUBLISH_DIR}" "${destinationDir}" /E                        
+                        )
+                    """
+                    echo 'Projects deployed.'
+                }
             }
         }
     }
