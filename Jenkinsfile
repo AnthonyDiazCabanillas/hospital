@@ -25,6 +25,31 @@ pipeline {
                 sh 'npm run build' // Ejecuta el script de construcción
             }
         }
+        
+        stage('Deploy') {
+            steps {
+                script {
+                    echo 'Deploying projects...'
+                    def destinationDir = "D:\\DigitalizacionHC\\Prueba"
+                    bat """
+                        if not exist "${destinationDir}" (
+                        mkdir "${destinationDir}"
+                        )
+                    """
+
+                    // Ejemplo: Copiar archivos a un servidor remoto usando SCP
+                    bat """
+                        if exist "${PUBLISH_DIR}" (
+                                    robocopy "${PUBLISH_DIR}" "${destinationDir}" /E                        
+                        )
+                    """
+                    echo 'Projects deployed.'
+                }
+            }
+        }
+
+
+
     }
 
     post {
