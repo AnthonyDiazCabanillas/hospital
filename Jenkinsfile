@@ -1,4 +1,4 @@
-/*pipeline {
+pipeline {
     agent any
 
     environment {
@@ -63,9 +63,9 @@
             echo 'Pipeline falló. Revisa los logs para más detalles.'
         }
     }
-} */
+} 
 
-pipeline {
+/*pipeline {
     agent any
 
     tools {
@@ -106,4 +106,4 @@ pipeline {
             echo 'Pipeline falló. Revisa los logs para más detalles.'
         }
     }
-}
+}*/
