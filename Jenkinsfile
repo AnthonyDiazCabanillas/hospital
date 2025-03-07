@@ -102,12 +102,23 @@ pipeline {
         }
 
         stage('Deploy') {
-            steps {
-                // Aquí puedes agregar los pasos para desplegar la aplicación
-                // Por ejemplo, copiar los archivos a un servidor web o subirlos a un bucket de S3
-                sh 'echo "Desplegando la aplicación..."'
-                sh 'cp -r build/* /var/www/html/' // Ejemplo para un servidor web
-            }
+             script {
+                    echo 'Deploying projects...'
+                    def destinationDir = "D:\\DigitalizacionHC\\Prueba"
+                    bat """
+                        if not exist "${destinationDir}" (
+                        mkdir "${destinationDir}"
+                        )
+                    """
+
+                    // Ejemplo: Copiar archivos a un servidor remoto usando SCP
+                    bat """
+                        if exist "${PUBLISH_DIR}" (
+                                    robocopy "${PUBLISH_DIR}" "${destinationDir}" /E                        
+                        )
+                    """
+                    echo 'Projects deployed.'
+                }
         }
     }
 
