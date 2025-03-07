@@ -14,7 +14,8 @@ pipeline {
             }
         }
 
-        steps {
+        stage('Instalar dependencias') {
+            steps {
                 sh 'npm install' // Instala dependencias y devDependencies
             }
         }
@@ -23,7 +24,7 @@ pipeline {
             steps {
                 sh 'npm run build' // Ejecuta el script de construcción
             }
-        
+        }
         
         stage('Deploy') {
             steps {
