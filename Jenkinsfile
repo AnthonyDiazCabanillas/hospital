@@ -65,7 +65,7 @@
     }
 } */
 
-ipeline {
+pipeline {
     agent any
 
     tools {
