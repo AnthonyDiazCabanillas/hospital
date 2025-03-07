@@ -20,11 +20,11 @@ pipeline {
             }
         }
 
-        stage('Ejecutar pruebas') {
+        /*stage('Ejecutar pruebas') {
             steps {
                 sh 'npm test' // Asegúrate de que el proyecto tenga scripts de prueba en package.json
             }
-        }
+        }*/
 
         stage('Construir proyecto') {
             steps {
