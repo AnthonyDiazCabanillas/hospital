@@ -1,4 +1,4 @@
-pipeline {
+/*pipeline {
     agent any
 
     environment {
@@ -51,6 +51,49 @@ pipeline {
                     """
                     echo 'Projects deployed.'
                 }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo '¡Pipeline ejecutado con éxito!'
+        }
+        failure {
+            echo 'Pipeline falló. Revisa los logs para más detalles.'
+        }
+    }
+} */
+
+ipeline {
+    agent any
+
+    tools {
+        nodejs 'NodeJS' // Usa el nombre que configuraste en "Global Tool Configuration"
+    }
+
+    stages {
+        stage('Clonar repositorio') {
+            steps {
+                git branch: 'main', url: 'https://github.com/AnthonyDiazCabanillas/hospital.git'
+            }
+        }
+
+        stage('Instalar dependencias') {
+            steps {
+                sh 'npm install'
+            }
+        }
+
+        stage('Ejecutar pruebas') {
+            steps {
+                sh 'npm test'
+            }
+        }
+
+        stage('Construir proyecto') {
+            steps {
+                sh 'npm run build'
             }
         }
     }
