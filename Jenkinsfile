@@ -80,7 +80,7 @@ pipeline {
         stage('Publicar proyecto') {
             steps {
                 // Publica el proyecto en una carpeta específica
-                bat 'msbuild C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\WebHCE\\WebHCE.vbproj /p:Configuration=Release /p:Platform="Any CPU" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile'
+                bat 'msbuild C:\ProgramData\Jenkins\.jenkins\workspace\Hospital\WebHCE.sln /p:Configuration=Release /p:Platform="Any CPU" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile'
             }
         }
 
