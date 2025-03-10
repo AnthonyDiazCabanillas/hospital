@@ -57,10 +57,8 @@ pipeline {
     environment {
         JAVA_HOME = 'C:\\Program Files\\Java\\jdk-23' // Ajusta la ruta según tu entorno en Windows
         PATH = "${JAVA_HOME}\\bin;${PATH}"
-    }
-
-    tools {
-        maven '%MAVEN_HOME%' // Usa el nombre que configuraste en Jenkins
+        MAVEN_HOME = 'C:\\Maven\\apache-maven-3.9.9-bin\\apache-maven-3.9.9' // Ajusta la ruta según tu instalación de Maven
+        PATH = "${MAVEN_HOME}\\bin;${PATH}"
     }
 
     stages {
@@ -73,27 +71,29 @@ pipeline {
 
         stage('Restore Dependencies') {
             steps {
-                bat 'dotnet restore' // Restaura los paquetes NuGet para todos los proyectos
+                bat 'dotnet restore C:/ProgramData/Jenkins/.jenkins/workspace/Hospital/WebHCE/WebHCE.vbproj' // Restaura los paquetes NuGet para el proyecto
                 echo 'Dependencies restored.'
             }
         }
 
         stage('Build') {
             steps {
-                // Compila cada proyecto individualmente
-                 bat 'dotnet build C:/ProgramData/Jenkins/.jenkins/workspace/Hospital/WebHCE/WebHCE.vbproj --configuration Release'
+                bat 'dotnet build C:/ProgramData/Jenkins/.jenkins/workspace/Hospital/WebHCE/WebHCE.vbproj --configuration Release'
+                echo 'Build completed.'
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                bat 'mvn test' // Ejecuta pruebas con Maven
+                echo 'Tests completed.'
             }
         }
 
         stage('Empaquetar') {
             steps {
-                sh 'mvn package'
+                bat 'mvn package' // Empaqueta el proyecto con Maven
+                echo 'Packaging completed.'
             }
         }
     }
