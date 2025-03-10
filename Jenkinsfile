@@ -50,14 +50,13 @@
         }
     }
 }*/
-spipeline {
+pipeline {
     agent any
 
     environment {
-        // Define las variables de entorno necesarias
         REPO_URL = 'https://github.com/AnthonyDiazCabanillas/hospital.git'
-        BRANCH = 'main' // Cambia a la rama que desees compilar
-        DEPLOY_DIR = 'D:/hospital-build' // Carpeta en el disco D: donde se publicarán los archivos
+        BRANCH = 'main'
+        DEPLOY_DIR = 'D:/hospital-build' // Carpeta en el disco D:
     }
 
     stages {
@@ -71,24 +70,21 @@ spipeline {
         stage('Instalar dependencias') {
             steps {
                 echo 'Instalando dependencias...'
-                sh 'npm install' // Instala las dependencias del proyecto (Node.js)
+                sh 'npm install' // Instala dependencias de Node.js
             }
         }
 
         stage('Compilar proyecto') {
             steps {
                 echo 'Compilando el proyecto...'
-                sh 'npm run build' // Compila el proyecto (Node.js)
+                sh 'npm run build' // Compila el proyecto
             }
         }
 
         stage('Publicar en disco local') {
             steps {
                 echo 'Publicando los archivos en el disco D:...'
-                // Copia los archivos generados a la carpeta en el disco D:
-                bat "xcopy /E /I /Y \"${WORKSPACE}\\dist\\*\" \"${DEPLOY_DIR}\"" // Windows (bat)
-                // Si estás en Linux, usa el siguiente comando:
-                // sh "cp -r ${WORKSPACE}/dist/* ${DEPLOY_DIR}/"
+                bat "xcopy /E /I /Y \"${WORKSPACE}\\dist\\*\" \"${DEPLOY_DIR}\"" // Copia los archivos al disco D:
             }
         }
     }
