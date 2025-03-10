@@ -55,54 +55,58 @@ pipeline {
     agent any
 
     environment {
-        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-23' // Ajusta la ruta según tu entorno en Windows
-        MAVEN_HOME = 'C:\\Maven\\apache-maven-3.8.6' // Ajusta la ruta según tu instalación de Maven
-        PATH = "${JAVA_HOME}\\bin;${MAVEN_HOME}\\bin;${PATH}" // Combina las rutas de Java y Maven
+        // Configura las rutas y variables necesarias
+        SOLUTION_FILE = "WebHCE.sln" // Nombre del archivo de solución
+        PROJECT_FILE = "WebHCE.vbproj" // Nombre del archivo de proyecto
+        CONFIGURATION = "Release" // Configuración de compilación (Release/Debug)
+        PUBLISH_DIR = "publish" // Carpeta donde se publicarán los archivos compilados
     }
 
     stages {
-        stage('Checkout') {
+        stage('Clonar repositorio') {
             steps {
+                // Clona el repositorio de GitHub
                 git branch: 'main', url: 'https://github.com/AnthonyDiazCabanillas/hospital.git'
-                echo 'Repository cloned.'
             }
         }
 
-        stage('Restore Dependencies') {
+        stage('Restaurar paquetes NuGet') {
             steps {
-                bat 'dotnet restore C:/ProgramData/Jenkins/.jenkins/workspace/Hospital/WebHCE/WebHCE.vbproj' // Restaura los paquetes NuGet para el proyecto
-                echo 'Dependencies restored.'
+                // Restaura los paquetes NuGet (si es necesario)
+                bat 'nuget restore'
             }
         }
 
-        stage('Build') {
+        stage('Compilar proyecto') {
             steps {
-                bat 'dotnet build C:/ProgramData/Jenkins/.jenkins/workspace/Hospital/WebHCE/WebHCE.vbproj --configuration Release'
-                echo 'Build completed.'
+                // Compila el proyecto utilizando MSBuild
+                bat "msbuild ${SOLUTION_FILE} /p:Configuration=${CONFIGURATION} /p:Platform=\"Any CPU\" /t:Build"
             }
         }
 
-        stage('Test') {
+        stage('Publicar proyecto') {
             steps {
-                bat 'mvn test' // Ejecuta pruebas con Maven
-                echo 'Tests completed.'
+                // Publica el proyecto en una carpeta específica
+                bat "msbuild ${PROJECT_FILE} /p:Configuration=${CONFIGURATION} /p:Platform=\"Any CPU\" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile"
             }
         }
 
-        stage('Empaquetar') {
+        stage('Desplegar') {
             steps {
-                bat 'mvn package' // Empaqueta el proyecto con Maven
-                echo 'Packaging completed.'
+                // Copia los archivos publicados a un servidor o directorio de destino
+                bat "xcopy /Y /E /I ${PUBLISH_DIR} \"D:\\DigitalizacionHC\\PruebaHospital"
             }
         }
     }
 
     post {
         success {
-            echo '¡Construcción exitosa!'
+            // Acciones a realizar si el pipeline tiene éxito
+            echo 'Pipeline completado con éxito.'
         }
         failure {
-            echo '¡Construcción fallida!'
+            // Acciones a realizar si el pipeline falla
+            echo 'Pipeline fallido.'
         }
     }
 }
