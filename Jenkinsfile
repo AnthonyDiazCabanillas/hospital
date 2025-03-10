@@ -55,12 +55,12 @@ pipeline {
     agent any
 
     environment {
-        JAVA_HOME = 'C:\Program Files\Java\jdk-23' // Ajusta la ruta según tu entorno
-        PATH = "${JAVA_HOME}/bin:${PATH}"
+        JAVA_HOME = 'C:\\Program Files\\Java\\jdk-17' // Ajusta la ruta según tu entorno en Windows
+        PATH = "${JAVA_HOME}\\bin;${PATH}"
     }
 
     tools {
-        maven 'Maven 3.9.9' // Usa el nombre que configuraste en Jenkins
+        maven 'Maven 3.8.6' // Usa el nombre que configuraste en Jenkins
     }
 
     stages {
