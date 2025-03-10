@@ -70,13 +70,6 @@ pipeline {
             }
         }
 
-        stage('Restaurar paquetes NuGet') {
-            steps {
-                // Restaura los paquetes NuGet (si es necesario)
-               // bat 'nuget restore'
-            }
-        }
-
         stage('Compilar proyecto') {
             steps {
                 // Compila el proyecto utilizando MSBuild
