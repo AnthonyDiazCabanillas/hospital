@@ -32,7 +32,12 @@
         stage('Publicar en disco local') {
             steps {
                 echo 'Publicando los archivos en el disco D:...'
-                bat 'xcopy /E /I /Y "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\dist" "D:\\hospital-build"'
+                bat '''
+                    if not exist "${DEPLOY_DIR}" (
+                        mkdir "${DEPLOY_DIR}"
+                    )
+                    xcopy /E /I /Y "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\dist\\*" "${DEPLOY_DIR}"
+                '''
             }
         }
     }
@@ -51,8 +56,8 @@ pipeline {
 
     environment {
         REPO_URL = 'https://github.com/AnthonyDiazCabanillas/hospital.git'
-        BRANCH = 'main'
-        DEPLOY_DIR = 'D:/hospital-build' // Carpeta en el disco D:
+        BRANCH = 'main' // Cambia a la rama que desees compilar
+        DEPLOY_DIR = 'D:/WebHCE' // Carpeta de despliegue en el disco D:
     }
 
     stages {
@@ -77,9 +82,9 @@ pipeline {
             }
         }
 
-        stage('Publicar en disco local') {
+        stage('Publicar en carpeta WebHCE') {
             steps {
-                echo 'Publicando los archivos en el disco D:...'
+                echo 'Publicando los archivos en la carpeta WebHCE...'
                 bat '''
                     if not exist "${DEPLOY_DIR}" (
                         mkdir "${DEPLOY_DIR}"
@@ -92,7 +97,7 @@ pipeline {
 
     post {
         success {
-            echo 'El proyecto se ha compilado y publicado correctamente en el disco D:.'
+            echo 'El proyecto se ha compilado y publicado correctamente en la carpeta WebHCE.'
         }
         failure {
             echo 'Hubo un error en la compilación o publicación del proyecto.'
