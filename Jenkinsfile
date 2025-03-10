@@ -56,9 +56,8 @@ pipeline {
 
     environment {
         JAVA_HOME = 'C:\\Program Files\\Java\\jdk-23' // Ajusta la ruta según tu entorno en Windows
-        PATH = "${JAVA_HOME}\\bin;${PATH}"
-        MAVEN_HOME = 'C:\\Maven\\apache-maven-3.9.9-bin\\apache-maven-3.9.9' // Ajusta la ruta según tu instalación de Maven
-        PATH = "${MAVEN_HOME}\\bin;${PATH}"
+        MAVEN_HOME = 'C:\\Maven\\apache-maven-3.8.6' // Ajusta la ruta según tu instalación de Maven
+        PATH = "${JAVA_HOME}\\bin;${MAVEN_HOME}\\bin;${PATH}" // Combina las rutas de Java y Maven
     }
 
     stages {
