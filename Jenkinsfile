@@ -51,7 +51,9 @@
         }
     }
 }*/
-pipeline {
+
+
+/*pipeline {
     agent any
 
     environment {
@@ -101,6 +103,63 @@ pipeline {
         }
         failure {
             echo 'Hubo un error en la compilación o publicación del proyecto.'
+        }
+    }
+}
+*/
+
+pipeline {
+    agent any
+
+    environment {
+        REPO_URL = 'https://github.com/AnthonyDiazCabanillas/hospital.git'
+        BRANCH = 'main' // Cambia a la rama que desees compilar
+        SOLUTION_FILE = 'WebHCE.sln' // Nombre del archivo de solución
+        DEPLOY_DIR = 'D:/WebHCE-Deploy' // Carpeta de despliegue en el disco D:
+        MSBUILD_PATH = 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\MSBuild\\Current\\Bin\\MSBuild.exe' // Ruta de MSBuild
+    }
+
+    stages {
+        stage('Clonar repositorio') {
+            steps {
+                echo 'Clonando el repositorio...'
+                git branch: "${BRANCH}", url: "${REPO_URL}"
+            }
+        }
+
+        stage('Restaurar paquetes NuGet') {
+            steps {
+                echo 'Restaurando paquetes NuGet...'
+                bat 'nuget restore "${WORKSPACE}\\${SOLUTION_FILE}"'
+            }
+        }
+
+        stage('Compilar solución') {
+            steps {
+                echo 'Compilando la solución...'
+                bat "\"${MSBUILD_PATH}\" \"${WORKSPACE}\\${SOLUTION_FILE}\" /p:Configuration=Release /p:Platform=\"Any CPU\" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile"
+            }
+        }
+
+        stage('Publicar en carpeta de despliegue') {
+            steps {
+                echo 'Publicando los archivos en la carpeta de despliegue...'
+                bat '''
+                    if not exist "${DEPLOY_DIR}" (
+                        mkdir "${DEPLOY_DIR}"
+                    )
+                    xcopy /E /I /Y "${WORKSPACE}\\WebHCE\\bin\\Release\\Publish\\*" "${DEPLOY_DIR}"
+                '''
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'La solución se ha compilado y publicado correctamente en la carpeta de despliegue.'
+        }
+        failure {
+            echo 'Hubo un error en la compilación o publicación de la solución.'
         }
     }
 }
