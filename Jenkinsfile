@@ -70,9 +70,11 @@ pipeline {
             }
         }
 
-        stage('Compilar') {
+        stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                // Compila cada proyecto individualmente
+                bat 'dotnet build ./WebHCE/WebHCE.csproj --configuration Release'
+                echo 'All projects built successfully.'
             }
         }
 
