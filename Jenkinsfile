@@ -81,7 +81,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Compila cada proyecto individualmente
-                bat 'dotnet build ./WebHCE/WebHCE.csproj --configuration Release'
+                bat 'dotnet build C:\ProgramData\Jenkins\.jenkins\workspace\Hospital\WebHCE\WebHCE.csproj --configuration Release'
                 echo 'All projects built successfully.'
             }
         }
