@@ -81,17 +81,10 @@ pipeline {
             }
         }
 
-        stage('Verificar estructura del proyecto') {
-            steps {
-                echo 'Verificando la estructura del proyecto...'
-                bat 'dir /s /b "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital"'
-            }
-        }
-
         stage('Publicar en disco local') {
             steps {
                 echo 'Publicando los archivos en el disco D:...'
-                bat 'xcopy /E /I /Y "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\dist" "D:\\hospital-build"' // Ajusta la ruta si es necesario
+                bat 'xcopy /E /I /Y "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\dist" "D:\\hospital-build"'
             }
         }
     }
