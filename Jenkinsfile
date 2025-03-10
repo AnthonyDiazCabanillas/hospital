@@ -91,7 +91,7 @@ pipeline {
         stage('Publicar en disco local') {
             steps {
                 echo 'Publicando los archivos en el disco D:...'
-                bat 'xcopy /E /I /Y "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\dist" "D:\\hospital-build"'
+                bat 'xcopy /E /I /Y "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\dist" "D:\\hospital-build"' // Ajusta la ruta si es necesario
             }
         }
     }
