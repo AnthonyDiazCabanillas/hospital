@@ -73,7 +73,7 @@ pipeline {
         stage('Restaurar paquetes NuGet') {
             steps {
                 // Restaura los paquetes NuGet (si es necesario)
-                bat 'nuget restore'
+               // bat 'nuget restore'
             }
         }
 
