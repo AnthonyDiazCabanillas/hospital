@@ -75,7 +75,7 @@ pipeline {
                 bat 'msbuild C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\WebHCE\\WebHCE.vbproj /p:Configuration=Release /p:Platform="Any CPU" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile'
                 echo 'Build completed.'
             }
-
+        }
         stage('Publicar proyecto') {
             steps {
                 // Publica el proyecto en una carpeta específica
