@@ -60,7 +60,7 @@ pipeline {
     }
 
     tools {
-        maven 'Maven 3.9.9' // Usa el nombre que configuraste en Jenkins
+        maven '%MAVEN_HOME%' // Usa el nombre que configuraste en Jenkins
     }
 
     stages {
