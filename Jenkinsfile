@@ -57,7 +57,7 @@ pipeline {
     environment {
         // Configura las rutas y variables necesarias
         SOLUTION_FILE = "WebHCE.sln" // Nombre del archivo de solución
-        PROJECT_FILE = "WebHCE.vbproj" // Nombre del archivo de proyecto
+        PROJECT_FILE = "C:\ProgramData\Jenkins\.jenkins\workspace\Hospital\WebHCE" // Nombre del archivo de proyecto
         CONFIGURATION = "Release" // Configuración de compilación (Release/Debug)
         PUBLISH_DIR = "publish" // Carpeta donde se publicarán los archivos compilados
     }
