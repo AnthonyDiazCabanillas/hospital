@@ -57,7 +57,7 @@ pipeline {
     environment {
         // Configura las rutas y variables necesarias
         SOLUTION_FILE = "WebHCE.sln" // Nombre del archivo de solución
-        PROJECT_FILE = "C:\ProgramData\Jenkins\.jenkins\workspace\Hospital\WebHCE" // Nombre del archivo de proyecto
+        PROJECT_FILE = "WebHCE.vbproj" // Nombre del archivo de proyecto
         CONFIGURATION = "Release" // Configuración de compilación (Release/Debug)
         PUBLISH_DIR = "publish" // Carpeta donde se publicarán los archivos compilados
     }
@@ -80,7 +80,7 @@ pipeline {
         stage('Publicar proyecto') {
             steps {
                 // Publica el proyecto en una carpeta específica
-                bat "msbuild ${PROJECT_FILE} /p:Configuration=${CONFIGURATION} /p:Platform=\"Any CPU\" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile"
+                bat "msbuild C:\ProgramData\Jenkins\.jenkins\workspace\Hospital\WebHCE\WebHCE.vbproj /p:Configuration=Release /p:Platform="Any CPU" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile"
             }
         }
 
