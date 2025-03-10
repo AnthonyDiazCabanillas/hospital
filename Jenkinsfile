@@ -67,6 +67,14 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/AnthonyDiazCabanillas/hospital.git'
+                echo 'Repository cloned.'
+            }
+        }
+
+        stage('Restore Dependencies') {
+            steps {
+                bat 'dotnet restore' // Restaura los paquetes NuGet para todos los proyectos
+                echo 'Dependencies restored.'
             }
         }
 
