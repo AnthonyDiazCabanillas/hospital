@@ -70,16 +70,17 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Compilar proyecto') {
             steps {
-                bat 'msbuild C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\WebHCE\\WebHCE.vbproj /p:Configuration=Release /p:Platform="Any CPU" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile'
-                echo 'Build completed.'
+                // Compila el proyecto utilizando MSBuild
+                bat "msbuild ${SOLUTION_FILE} /p:Configuration=${CONFIGURATION} /p:Platform=\"Any CPU\" /t:Build"
             }
         }
+
         stage('Publicar proyecto') {
             steps {
                 // Publica el proyecto en una carpeta específica
-                bat "msbuild ${PROJECT_FILE} /p:Configuration=${CONFIGURATION} /p:Platform=\"Any CPU\" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile"
+                bat 'msbuild C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Hospital\\WebHCE\\WebHCE.vbproj /p:Configuration=Release /p:Platform="Any CPU" /p:DeployOnBuild=true /p:PublishProfile=FolderProfile'
             }
         }
 
